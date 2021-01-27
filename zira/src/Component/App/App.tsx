@@ -3,13 +3,11 @@ import Navbar from '../Navbar/Navbar';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import './App.css';
 
-const navItems = ['Teams', 'Login'];
-
 function App(): JSX.Element {
     return (
         <div className="App">
             <Router>
-                <Navbar navItems={navItems}></Navbar>
+                <Navbar></Navbar>
                 <Switch></Switch>
             </Router>
         </div>

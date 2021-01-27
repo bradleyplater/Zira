@@ -2,46 +2,57 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import '../Navbar/Navbar.css';
 
-interface Props {
-    navItems: string[];
-}
+import { RootStore } from '../../State/Store';
+import { GetTeams } from '../../State/Teams/Actions/TeamsActions';
+import { useDispatch, useSelector } from 'react-redux';
 
-export default function Navbar({ navItems }: Props): JSX.Element {
+export default function Navbar(): JSX.Element {
+    const dispatch = useDispatch();
+    const teamsState = useSelector((state: RootStore) => state.teams);
+
+    dispatch(GetTeams);
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div className="container-fluid">
-                <a className="navbar-brand" href="#">
-                    Zira
-                </a>
-                <button
-                    className="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNavAltMarkup"
-                    aria-controls="navbarNavAltMarkup"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <ul className="navbar-nav">
-                        {navItems.map((navItem) => {
-                            //CHECK THE BOOTSTAP DOCKS TO GET THE CORRECT NAV SHIT
-
-                            <li className="nav-item dropdown">
-                                <NavLink
-                                    key={navItem}
-                                    to={'/' + navItem}
-                                    className="nav-link"
-                                    activeClassName="nav-link active"
-                                >
-                                    {navItem}
-                                </NavLink>
-                            </li>;
-                        })}
-                    </ul>
-                </div>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <NavLink className="navbar-brand" to="/">
+                Navbar
+            </NavLink>
+            <button
+                className="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul className="navbar-nav">
+                    <li className="nav-item dropdown">
+                        <a
+                            className="nav-link dropdown-toggle"
+                            href="#"
+                            id="navbarDropdownMenuLink"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                        >
+                            Dropdown link
+                        </a>
+                        <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a className="dropdown-item" href="/add-team">
+                                Add Team
+                            </a>
+                            {teamsState.teams &&
+                                teamsState.teams.map((team) => (
+                                    <a className="dropdown-item" href={'/' + team.name} key={team.name}>
+                                        {team.name}
+                                    </a>
+                                ))}
+                        </div>
+                    </li>
+                </ul>
             </div>
         </nav>
     );
