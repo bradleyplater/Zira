@@ -10,7 +10,12 @@ export default function Navbar(): JSX.Element {
     const dispatch = useDispatch();
     const teamsState = useSelector((state: RootStore) => state.teams);
 
-    dispatch(GetTeams);
+    //Is not updating store, need to look at this
+    const handleOnClick = () => {
+        dispatch(GetTeams());
+    };
+
+    console.log('Teams State: ', teamsState);
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <NavLink className="navbar-brand" to="/">
@@ -41,7 +46,7 @@ export default function Navbar(): JSX.Element {
                             Dropdown link
                         </a>
                         <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a className="dropdown-item" href="/add-team">
+                            <a className="dropdown-item" href="/add-team" onClick={handleOnClick}>
                                 Add Team
                             </a>
                             {teamsState.teams &&

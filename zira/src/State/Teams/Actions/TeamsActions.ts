@@ -1,16 +1,16 @@
 /*DEV DEPENDENCIES */
 import { Dispatch } from 'redux';
+import { Team } from '../../Models/TeamsModels';
 /*FILE DEPENDENCIES*/
-import { TeamsDispatchTypes, TEAMS_FAIL, TEAMS_LOADING, TEAMS_SUCCESS } from './TeamsActionTypes';
+import { TeamsDispatchTypes, TEAMS_FAIL, TEAMS_SUCCESS } from './TeamsActionTypes';
 
-export const GetTeams = () => async (dispatch: Dispatch<TeamsDispatchTypes>): Promise<void> => {
+export const GetTeams = () => (dispatch: Dispatch<TeamsDispatchTypes>) => {
     try {
-        dispatch({
-            type: TEAMS_LOADING,
-        });
+        const newPayload: Team[] = [{ name: 'Team 1' }, { name: 'Team 2' }];
+
         dispatch({
             type: TEAMS_SUCCESS,
-            payload: [{ name: 'team 1' }, { name: 'team2' }],
+            payload: newPayload,
         });
     } catch (e) {
         dispatch({
