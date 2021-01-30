@@ -1,1 +1,1 @@
-/// <reference types="react-scripts" />
+export const API_BASE_URL = 'REPLACE WITH BASE URL';

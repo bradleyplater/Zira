@@ -10,7 +10,6 @@ export default function Navbar(): JSX.Element {
     const dispatch = useDispatch();
     const teamsState = useSelector((state: RootStore) => state.teams);
 
-    //Is not updating store, need to look at this
     const handleOnClick = () => {
         dispatch(GetTeams());
     };
@@ -43,7 +42,7 @@ export default function Navbar(): JSX.Element {
                             aria-haspopup="true"
                             aria-expanded="false"
                         >
-                            Dropdown link
+                            Teams
                         </a>
                         <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a className="dropdown-item" href="/add-team" onClick={handleOnClick}>
