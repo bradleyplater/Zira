@@ -1,5 +1,5 @@
 import { Team } from '../Models/TeamsModels';
-import { TeamsDispatchTypes } from './Actions/TeamsActionTypes';
+import { TeamsDispatchTypes, TEAMS_FAIL, TEAMS_LOADING, TEAMS_SUCCESS } from './Actions/TeamsActionTypes';
 
 export interface IDefaultState {
     loading: boolean;
@@ -8,13 +8,28 @@ export interface IDefaultState {
 
 const defaultState: IDefaultState = {
     loading: false,
-    teams: [{ name: 'team 1' }, { name: 'team 2' }],
 };
 
 const teamsReducer = (state: IDefaultState = defaultState, action: TeamsDispatchTypes): IDefaultState => {
-    //SET REDUCER
-    console.log(action);
-    return state;
+    switch (action.type) {
+        case TEAMS_FAIL:
+            return {
+                loading: false,
+                teams: state.teams,
+            };
+        case TEAMS_LOADING:
+            return {
+                loading: true,
+                teams: state.teams,
+            };
+        case TEAMS_SUCCESS:
+            return {
+                loading: false,
+                teams: action.payload,
+            };
+        default:
+            return state;
+    }
 };
 
 export default teamsReducer;

@@ -10,7 +10,13 @@ export default function Navbar(): JSX.Element {
     const dispatch = useDispatch();
     const teamsState = useSelector((state: RootStore) => state.teams);
 
-    dispatch(GetTeams);
+    const handleOnClick = () => {
+        dispatch(GetTeams());
+    };
+
+    if (teamsState.teams == undefined && teamsState.loading != true) {
+        dispatch(GetTeams());
+    }
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <NavLink className="navbar-brand" to="/">
@@ -38,12 +44,12 @@ export default function Navbar(): JSX.Element {
                             aria-haspopup="true"
                             aria-expanded="false"
                         >
-                            Dropdown link
+                            Teams
                         </a>
                         <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a className="dropdown-item" href="/add-team">
+                            <button className="dropdown-item" onClick={handleOnClick}>
                                 Add Team
-                            </a>
+                            </button>
                             {teamsState.teams &&
                                 teamsState.teams.map((team) => (
                                     <a className="dropdown-item" href={'/' + team.name} key={team.name}>
