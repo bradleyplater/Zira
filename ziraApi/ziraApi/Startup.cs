@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ziraApi.Data;
 
 namespace ziraApi
 {
@@ -26,6 +27,9 @@ namespace ziraApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+
+            services.AddTransient<MySqlDatabase>(_ => new MySqlDatabase("Server=127.0.0.1; Port=3306; Database=Zira; uid=root; password=Azizidot123!"));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -47,6 +51,10 @@ namespace ziraApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors( x => x
+            .AllowAnyOrigin()
+            .AllowAnyHeader()
+            .SetIsOriginAllowed(origin => true));
 
             app.UseAuthorization();
 

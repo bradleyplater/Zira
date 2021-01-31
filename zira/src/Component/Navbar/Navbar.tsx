@@ -14,7 +14,9 @@ export default function Navbar(): JSX.Element {
         dispatch(GetTeams());
     };
 
-    console.log('Teams State: ', teamsState);
+    if (teamsState.teams == undefined && teamsState.loading != true) {
+        dispatch(GetTeams());
+    }
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <NavLink className="navbar-brand" to="/">
@@ -45,9 +47,9 @@ export default function Navbar(): JSX.Element {
                             Teams
                         </a>
                         <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a className="dropdown-item" href="/add-team" onClick={handleOnClick}>
+                            <button className="dropdown-item" onClick={handleOnClick}>
                                 Add Team
-                            </a>
+                            </button>
                             {teamsState.teams &&
                                 teamsState.teams.map((team) => (
                                     <a className="dropdown-item" href={'/' + team.name} key={team.name}>
