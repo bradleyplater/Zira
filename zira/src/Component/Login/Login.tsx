@@ -1,16 +1,11 @@
+import { useAuth0 } from '@auth0/auth0-react';
 export default function Login() {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    function onSignIn(googleUser: any) {
-        const profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    }
-
+    const { loginWithRedirect } = useAuth0();
     return (
         <>
-            <div className="g-signin2" data-onsuccess="onSignIn"></div>
+            <div>
+                <button onClick={() => loginWithRedirect()}>Login</button>
+            </div>
         </>
     );
 }

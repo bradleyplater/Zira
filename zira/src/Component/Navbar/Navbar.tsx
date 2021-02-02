@@ -1,7 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import '../Navbar/Navbar.css';
+import { useAuth0 } from '@auth0/auth0-react';
 
+import '../Navbar/Navbar.css';
 import { RootStore } from '../../State/Store';
 import { GetTeams } from '../../State/Teams/Actions/TeamsActions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +11,7 @@ import { Team } from '../../State/Models/TeamsModels';
 export default function Navbar(): JSX.Element {
     const dispatch = useDispatch();
     const teamsState = useSelector((state: RootStore) => state.teams);
+    const { loginWithRedirect, isAuthenticated, logout } = useAuth0();
 
     if (teamsState.teams == undefined && teamsState.loading != true) {
         dispatch(GetTeams());
@@ -54,9 +56,19 @@ export default function Navbar(): JSX.Element {
                         </div>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/login">
-                            Link
-                        </NavLink>
+                        {isAuthenticated ? (
+                            <NavLink
+                                className="nav-link"
+                                to="#"
+                                onClick={() => logout({ returnTo: window.location.origin })}
+                            >
+                                logout
+                            </NavLink>
+                        ) : (
+                            <NavLink className="nav-link" to="#" onClick={() => loginWithRedirect()}>
+                                login
+                            </NavLink>
+                        )}
                     </li>
                 </ul>
             </div>
