@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -19,7 +20,8 @@ namespace ziraApi.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<List<Team>> getTeams()
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<Team>>> getTeams()
         {
             var teams = TeamsDatabase.GetTeams(MySqlDatabase);
             return await teams;

@@ -5,14 +5,11 @@ import '../Navbar/Navbar.css';
 import { RootStore } from '../../State/Store';
 import { GetTeams } from '../../State/Teams/Actions/TeamsActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { Team } from '../../State/Models/TeamsModels';
 
 export default function Navbar(): JSX.Element {
     const dispatch = useDispatch();
     const teamsState = useSelector((state: RootStore) => state.teams);
-
-    const handleOnClick = () => {
-        dispatch(GetTeams());
-    };
 
     if (teamsState.teams == undefined && teamsState.loading != true) {
         dispatch(GetTeams());
@@ -47,16 +44,19 @@ export default function Navbar(): JSX.Element {
                             Teams
                         </a>
                         <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <button className="dropdown-item" onClick={handleOnClick}>
-                                Add Team
-                            </button>
+                            <button className="dropdown-item">Add Team</button>
                             {teamsState.teams &&
-                                teamsState.teams.map((team) => (
+                                teamsState.teams.map((team: Team) => (
                                     <a className="dropdown-item" href={'/' + team.name} key={team.name}>
                                         {team.name}
                                     </a>
                                 ))}
                         </div>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="#">
+                            Link
+                        </NavLink>
                     </li>
                 </ul>
             </div>
