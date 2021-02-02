@@ -20,6 +20,10 @@ module.exports = {
                 endOfLine: 'auto',
             },
         ],
+        // suppress errors for missing 'import React' in files
+        'react/react-in-jsx-scope': 'off',
+        // allow jsx syntax in ts files (for next.ts project)
+        'react/jsx-filename-extension': [1, { extensions: ['.ts', '.tsx'] }],
     },
     settings: {
         react: {

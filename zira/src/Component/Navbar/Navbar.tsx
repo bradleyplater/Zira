@@ -54,7 +54,7 @@ export default function Navbar(): JSX.Element {
                         </div>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="#">
+                        <NavLink className="nav-link" to="/login">
                             Link
                         </NavLink>
                     </li>
