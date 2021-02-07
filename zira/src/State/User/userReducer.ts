@@ -1,9 +1,10 @@
 import { User } from '../Models/UserModels';
-import { UserDispatchTypes, USER_FAILED, USER_LOADING, USER_SUCCESS } from './Actions/UserActionTypes';
+import { UserDispatchTypes, USER_FAILED, USER_LOADING, USER_SUCCESS } from './UserActions/UserActionTypes';
 
 export interface IUserState {
     loading: boolean;
     user?: User;
+    redirectTo?: string;
 }
 
 const defaultState: IUserState = {
@@ -16,6 +17,7 @@ const userReducer = (state: IUserState = defaultState, action: UserDispatchTypes
             return {
                 loading: false,
                 user: state.user,
+                redirectTo: '/create-profile',
             };
         case USER_LOADING:
             return {
@@ -27,6 +29,8 @@ const userReducer = (state: IUserState = defaultState, action: UserDispatchTypes
                 loading: false,
                 user: action.payload,
             };
+        default:
+            return state;
     }
 };
 
