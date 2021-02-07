@@ -1,16 +1,16 @@
 import { Team } from '../Models/TeamsModels';
 import { TeamsDispatchTypes, TEAMS_FAIL, TEAMS_LOADING, TEAMS_SUCCESS } from './Actions/TeamsActionTypes';
 
-export interface IDefaultState {
+export interface ITeamsState {
     loading: boolean;
     teams?: Team[];
 }
 
-const defaultState: IDefaultState = {
+const defaultState: ITeamsState = {
     loading: false,
 };
 
-const teamsReducer = (state: IDefaultState = defaultState, action: TeamsDispatchTypes): IDefaultState => {
+const teamsReducer = (state: ITeamsState = defaultState, action: TeamsDispatchTypes): ITeamsState => {
     switch (action.type) {
         case TEAMS_FAIL:
             return {
