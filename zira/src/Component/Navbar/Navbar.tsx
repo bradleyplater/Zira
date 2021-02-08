@@ -3,15 +3,13 @@ import { NavLink } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 
 import '../Navbar/Navbar.css';
-import { RootStore } from '../../State/Store';
 import { GetTeams } from '../../State/Teams/Actions/TeamsActions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Team } from '../../State/Models/TeamsModels';
+import { NavbarProps } from '../../Models/PropTypes';
 
-export default function Navbar(): JSX.Element {
+export default function Navbar({ teamsState, auth }: NavbarProps): JSX.Element {
     const dispatch = useDispatch();
-    const teamsState = useSelector((state: RootStore) => state.teams);
-    const { loginWithRedirect, isAuthenticated, logout } = useAuth0();
 
     if (teamsState.teams == undefined && teamsState.loading != true) {
         dispatch(GetTeams());
@@ -56,16 +54,16 @@ export default function Navbar(): JSX.Element {
                         </div>
                     </li>
                     <li className="nav-item">
-                        {isAuthenticated ? (
+                        {auth.isAuthenticated ? (
                             <NavLink
                                 className="nav-link"
                                 to="#"
-                                onClick={() => logout({ returnTo: window.location.origin })}
+                                onClick={() => auth.logout({ returnTo: window.location.origin })}
                             >
                                 logout
                             </NavLink>
                         ) : (
-                            <NavLink className="nav-link" to="#" onClick={() => loginWithRedirect()}>
+                            <NavLink className="nav-link" to="#" onClick={() => auth.loginWithRedirect()}>
                                 login
                             </NavLink>
                         )}
