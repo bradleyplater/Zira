@@ -1,10 +1,5 @@
-import { Team } from '../Models/TeamsModels';
+import { ITeamsState } from '../Models/TeamsModels';
 import { TeamsDispatchTypes, TEAMS_FAIL, TEAMS_LOADING, TEAMS_SUCCESS } from './Actions/TeamsActionTypes';
-
-export interface ITeamsState {
-    loading: boolean;
-    teams?: Team[];
-}
 
 const defaultState: ITeamsState = {
     loading: false,
