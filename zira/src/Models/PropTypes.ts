@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ITeamsState } from '../State/Teams/teamsReducer';
-import { IUserState } from '../State/User/userReducer';
+import { ITeamsState } from '../State/Models/TeamsModels';
+import { IUserState } from '../State/Models/UserModels';
 
 export type AuthProps = {
     loginWithRedirect?: any;
