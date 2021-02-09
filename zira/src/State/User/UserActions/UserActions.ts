@@ -3,8 +3,8 @@ import axios from 'axios';
 import { Dispatch } from 'redux';
 import { UserDispatchTypes, USER_FAILED, USER_LOADING, USER_SUCCESS } from './UserActionTypes';
 
-//get user by emails
-export const GetUserByEmail = (email: string) => async (dispatch: Dispatch<UserDispatchTypes>) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const GetUserByEmail = (email: string) => async (dispatch: Dispatch<UserDispatchTypes>): Promise<any> => {
     try {
         dispatch({ type: USER_LOADING });
 
