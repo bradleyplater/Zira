@@ -4,7 +4,8 @@ import { Dispatch } from 'redux';
 /*FILE DEPENDENCIES*/
 import { TeamsDispatchTypes, TEAMS_FAIL, TEAMS_LOADING, TEAMS_SUCCESS } from './TeamsActionTypes';
 
-export const GetTeams = () => async (dispatch: Dispatch<TeamsDispatchTypes>) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const GetTeams = () => async (dispatch: Dispatch<TeamsDispatchTypes>): Promise<any> => {
     try {
         dispatch({ type: TEAMS_LOADING });
 

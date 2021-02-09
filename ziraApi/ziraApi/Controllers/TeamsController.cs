@@ -24,7 +24,7 @@ namespace ziraApi.Controllers
         public async Task<ActionResult<List<Team>>> getTeams()
         {
             var teams = TeamsDatabase.GetTeams(MySqlDatabase);
-            return await teams;
+            return Ok(await teams);
         }
     }
 }
