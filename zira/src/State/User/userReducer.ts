@@ -1,11 +1,5 @@
-import { User } from '../Models/UserModels';
+import { IUserState } from '../Models/UserModels';
 import { UserDispatchTypes, USER_FAILED, USER_LOADING, USER_SUCCESS } from './UserActions/UserActionTypes';
-
-export interface IUserState {
-    loading: boolean;
-    user?: User;
-    redirectTo?: string;
-}
 
 const defaultState: IUserState = {
     loading: false,
