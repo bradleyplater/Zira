@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { ProfileProps } from '../../Models/PropTypes';
 import { GetUserByEmail } from '../../State/User/UserActions/UserActions';
 
-export default function Profile({ userState, auth, history }: ProfileProps) {
+export default function Profile({ userState, auth, history }: ProfileProps): JSX.Element {
     const dispatch = useDispatch();
     if (auth.isAuthenticated && userState.user === undefined && userState.loading != true) {
         dispatch(GetUserByEmail(auth.user.email));
