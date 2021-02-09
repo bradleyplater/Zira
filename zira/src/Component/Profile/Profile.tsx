@@ -1,16 +1,11 @@
-import { useAuth0 } from '@auth0/auth0-react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { RootStore } from '../../State/Store';
+import { useDispatch } from 'react-redux';
+import { ProfileProps } from '../../Models/PropTypes';
 import { GetUserByEmail } from '../../State/User/UserActions/UserActions';
 
-export default function Profile() {
-    const { user, isAuthenticated } = useAuth0();
-    const history = useHistory();
+export default function Profile({ userState, auth, history }: ProfileProps) {
     const dispatch = useDispatch();
-    const userState = useSelector((state: RootStore) => state.user);
-    if (isAuthenticated && userState.user === undefined && userState.loading != true) {
-        dispatch(GetUserByEmail(user.email));
+    if (auth.isAuthenticated && userState.user === undefined && userState.loading != true) {
+        dispatch(GetUserByEmail(auth.user.email));
     }
     if (userState.redirectTo != null) {
         history.push('/create-profile');
