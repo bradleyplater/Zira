@@ -7,6 +7,7 @@ import { ITeamsState } from '../../../State/Models/TeamsModels';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Store from '../../../State/Store';
+import '@testing-library/jest-dom';
 
 const authLoggedIn: AuthProps = {
     loginWithRedirect: () => {},
@@ -145,5 +146,25 @@ describe('Navbar - Teams dropdown populates correctly - ', () => {
         expect(team1).toBeNull();
         expect(team2).toBeNull();
         expect(team3).toBeNull();
+    });
+});
+
+describe('Navbar - Teams links send to the correct route - ', () => {
+    teamsStateWithTeams.teams?.forEach((team) => {
+        it(`When clicking on '${team.name}' from the dropdown it should send you to '/team/${team.name}'`, () => {
+            global.Window = { location: { pathname: null } };
+            const { getByText } = render(
+                <Provider store={Store}>
+                    <Router>
+                        <Navbar auth={authLoggedIn} teamsState={teamsStateWithTeams}></Navbar>);
+                    </Router>
+                </Provider>,
+            );
+
+            const teamsButton = getByText('Teams');
+
+            fireEvent.click(teamsButton);
+            const teamButton = getByText(team.name);
+        });
     });
 });
