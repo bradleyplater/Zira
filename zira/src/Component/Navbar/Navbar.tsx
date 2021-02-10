@@ -46,7 +46,7 @@ export default function Navbar({ teamsState, auth }: NavbarProps): JSX.Element {
                             <button className="dropdown-item">Add Team</button>
                             {teamsState.teams &&
                                 teamsState.teams.map((team: Team) => (
-                                    <a className="dropdown-item" href={'/' + team.name} key={team.name}>
+                                    <a className="dropdown-item" href={'/team/' + team.name} key={team.name}>
                                         {team.name}
                                     </a>
                                 ))}
