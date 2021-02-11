@@ -9,7 +9,7 @@ import { Route, Router, Switch } from 'react-router-dom';
 import Store from '../../../State/Store';
 import '@testing-library/jest-dom';
 import { createMemoryHistory } from 'history';
-import Location from './Location';
+import Location from '../../TestHelpers/Location';
 
 function renderLogin(auth: AuthProps, teamsState: ITeamsState) {
     const history = createMemoryHistory();
@@ -76,7 +76,7 @@ describe('Navbar Can Render with correct text - ', () => {
     });
 
     it('When isAuthenticated is false "login" should be on Navbar', () => {
-        const { getByText } = renderLogin(authLoggedIn, teamsStateWithTeams);
+        const { getByText } = renderLogin(authLoggedOut, teamsStateWithTeams);
 
         getByText('login');
     });
