@@ -11,11 +11,11 @@ export default function Profile({ auth }: ProfileProps): JSX.Element {
     const history = useHistory();
 
     const dispatch = useDispatch();
-    if (auth.isAuthenticated && userState.user === undefined && userState.loading != true) {
-        dispatch(GetUserByEmail(auth.user.email));
-    }
     if (userState.redirectTo) {
         history.push('/create-profile');
+    }
+    if (auth.isAuthenticated && userState.user === undefined && userState.loading != true) {
+        dispatch(GetUserByEmail(auth.user.email));
     }
     return (
         <div>
