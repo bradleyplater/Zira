@@ -15,7 +15,5 @@ export type NavbarProps = {
 };
 
 export type ProfileProps = {
-    userState: IUserState;
     auth: AuthProps;
-    history: any;
 };

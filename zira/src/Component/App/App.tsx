@@ -10,15 +10,11 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 function App(): JSX.Element {
     const teamsState = useSelector((state: RootStore) => state.teams);
-    const userState = useSelector((state: RootStore) => state.user);
 
-    const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
-    const history = useHistory();
+    const { isAuthenticated, user } = useAuth0();
 
     const auth: AuthProps = {
-        loginWithRedirect: () => loginWithRedirect(),
         isAuthenticated: isAuthenticated,
-        logout: () => logout(),
         user: user,
     };
 
@@ -28,7 +24,7 @@ function App(): JSX.Element {
                 <Navbar teamsState={teamsState} auth={auth} />
                 <Switch>
                     <Route path="/profile">
-                        <Profile userState={userState} auth={auth} history={history}></Profile>
+                        <Profile auth={auth}></Profile>
                     </Route>
                 </Switch>
             </Router>

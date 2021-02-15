@@ -6,5 +6,5 @@ export type User = {
 export interface IUserState {
     loading: boolean;
     user?: User;
-    redirectTo?: string;
+    redirectTo: boolean;
 }
