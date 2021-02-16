@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 /*DEV DEPENDENCIES */
 import { combineReducers } from 'redux';
 

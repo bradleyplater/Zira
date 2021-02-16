@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* istanbul ignore file */
 import { ITeamsState } from '../State/Models/TeamsModels';
 import { IUserState } from '../State/Models/UserModels';
 
@@ -10,7 +11,6 @@ export type AuthProps = {
 };
 
 export type NavbarProps = {
-    teamsState: ITeamsState;
     auth: AuthProps;
 };
 

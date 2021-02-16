@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 export type Team = {
     name: string;
 };
