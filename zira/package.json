@@ -46,7 +46,7 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "test": "react-scripts test",
+        "test": "react-scripts test --verbose",
         "eject": "react-scripts eject",
         "coverage": "react-scripts test --coverage --watchAll"
     },
@@ -67,5 +67,9 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "devDependencies": {
+        "fakerator": "^0.3.2",
+        "unique-names-generator": "^4.3.1"
     }
 }
