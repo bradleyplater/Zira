@@ -3,11 +3,13 @@ import { NavLink } from 'react-router-dom';
 
 import '../Navbar/Navbar.css';
 import { GetTeams } from '../../State/Teams/Actions/TeamsActions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Team } from '../../State/Models/TeamsModels';
 import { NavbarProps } from '../../Models/PropTypes';
+import { RootStore } from '../../State/Store';
 
-export default function Navbar({ teamsState, auth }: NavbarProps): JSX.Element {
+export default function Navbar({ auth }: NavbarProps): JSX.Element {
+    const teamsState = useSelector((state: RootStore) => state.teams);
     const dispatch = useDispatch();
 
     if (teamsState.teams == undefined && teamsState.loading != true) {
