@@ -10,6 +10,7 @@ const _testHelper: TestHelper = new TestHelper();
 
 const dataWithTeams = { data: [{ name: 'team 1' }, { name: 'team 2' }, { name: 'team 3' }], status: 200 };
 const dataWithoutTeams = { data: [], status: 404 };
+const dataApiError = { data: [], status: 500 };
 
 const loginWithRedirect = jest.fn();
 const logout = jest.fn();
@@ -81,6 +82,25 @@ describe('Navbar - Teams dropdown populates correctly - ', () => {
         _testHelper.setUpMock(dataWithoutTeams);
 
         const { getByText, queryByText } = _testHelper.renderWithRedux(<Navbar auth={authLoggedOut}></Navbar>);
+
+        const teamsButton = getByText('Teams');
+
+        fireEvent.click(teamsButton);
+
+        await waitFor(() => {
+            const team1 = queryByText('team 1');
+            const team2 = queryByText('team 2');
+            const team3 = queryByText('team 3');
+
+            expect(team1).toBeNull();
+            expect(team2).toBeNull();
+            expect(team3).toBeNull();
+        });
+    });
+    it('When isAuthenticated is true but api returns a 500 no errors occur', async () => {
+        _testHelper.setUpMock(dataApiError);
+
+        const { getByText, queryByText } = _testHelper.renderWithRedux(<Navbar auth={authLoggedIn}></Navbar>);
 
         const teamsButton = getByText('Teams');
 
