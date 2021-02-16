@@ -3,6 +3,7 @@ import { UserDispatchTypes, USER_FAILED, USER_LOADING, USER_SUCCESS } from './Us
 
 const defaultState: IUserState = {
     loading: false,
+    redirectTo: false,
 };
 
 const userReducer = (state: IUserState = defaultState, action: UserDispatchTypes): IUserState => {
@@ -11,17 +12,19 @@ const userReducer = (state: IUserState = defaultState, action: UserDispatchTypes
             return {
                 loading: false,
                 user: state.user,
-                redirectTo: '/create-profile',
+                redirectTo: true,
             };
         case USER_LOADING:
             return {
                 loading: true,
                 user: state.user,
+                redirectTo: false,
             };
         case USER_SUCCESS:
             return {
                 loading: false,
                 user: action.payload,
+                redirectTo: false,
             };
         default:
             return state;
