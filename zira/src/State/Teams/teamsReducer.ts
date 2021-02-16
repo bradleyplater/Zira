@@ -10,7 +10,7 @@ const teamsReducer = (state: ITeamsState = defaultState, action: TeamsDispatchTy
         case TEAMS_FAIL:
             return {
                 loading: false,
-                teams: state.teams,
+                teams: [],
             };
         case TEAMS_LOADING:
             return {
