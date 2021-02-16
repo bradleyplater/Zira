@@ -9,10 +9,19 @@ import Location from './Location';
 import mockedAxios from '../../__mocks__/axios';
 import teamsReducer from '../../State/Teams/teamsReducer';
 import { createMemoryHistory } from 'history';
-
+import { TestCase, TestData } from './TestTypes';
+import { uniqueNamesGenerator, names, Config } from 'unique-names-generator';
 export default class TestHelper {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    constructor() {}
+    private _numberOfCases: number;
+    public get numberOfCases(): number {
+        return this._numberOfCases;
+    }
+    public set numberOfCases(v: number) {
+        this._numberOfCases = v;
+    }
+    constructor(numberOfCases = 3) {
+        this._numberOfCases = numberOfCases;
+    }
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     renderWithRedux(component: JSX.Element) {
         const store = this.setUpStore();
@@ -38,5 +47,26 @@ export default class TestHelper {
 
     setUpMock(data: any): void {
         mockedAxios.get.mockResolvedValueOnce(data);
+    }
+
+    getProfileTestCases(): TestCase[] {
+        const testCases: TestCase[] = [];
+        const config: Config = {
+            dictionaries: [names],
+        };
+        for (let i = 0; i < this.numberOfCases; i++) {
+            const name = uniqueNamesGenerator(config);
+            const email = name + '@email.com';
+            const testData: TestData = {
+                data: { name: name, email: email },
+                status: 200,
+            };
+            const testCase: TestCase = {
+                iteration: i,
+                data: testData,
+            };
+            testCases.push(testCase);
+        }
+        return testCases;
     }
 }
