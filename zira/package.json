@@ -8,9 +8,7 @@
         "@testing-library/react": "^11.2.5",
         "@testing-library/user-event": "^12.6.0",
         "@types/auth0": "^2.32.1",
-        "@types/axios-mock-adapter": "^1.10.0",
         "@types/jest": "^26.0.20",
-        "@types/nock": "^11.1.0",
         "@types/node": "^12.19.14",
         "@types/react": "^16.14.2",
         "@types/react-dom": "^16.9.10",
@@ -21,14 +19,11 @@
         "@typescript-eslint/eslint-plugin": "^4.14.0",
         "@typescript-eslint/parser": "^4.14.0",
         "axios": "^0.21.1",
-        "axios-mock-adapter": "^1.19.0",
         "eslint": "^7.18.0",
         "eslint-config-prettier": "^7.2.0",
         "eslint-plugin-prettier": "^3.3.1",
         "eslint-plugin-react": "^7.22.0",
         "history": "^5.0.0",
-        "mocha-eventually": "^1.1.0",
-        "nock": "^13.0.7",
         "prettier": "^2.2.1",
         "react": "^17.0.1",
         "react-cookie": "^4.0.3",
@@ -40,8 +35,7 @@
         "redux-devtools-extension": "^2.13.8",
         "redux-thunk": "^2.3.0",
         "ts-jest": "^26.5.1",
-        "typescript": "^4.1.3",
-        "web-vitals": "^0.2.4"
+        "typescript": "^4.1.3"
     },
     "scripts": {
         "start": "react-scripts start",
@@ -69,7 +63,6 @@
         ]
     },
     "devDependencies": {
-        "fakerator": "^0.3.2",
         "unique-names-generator": "^4.3.1"
     }
 }
