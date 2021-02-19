@@ -81,7 +81,7 @@ describe('Navbar - Teams dropdown populates correctly - ', () => {
     it('When isAuthenticated is true and teamsState has no teams there should be no teams in the dropdown', async () => {
         _testHelper.setUpMock(dataWithoutTeams);
 
-        const { getByText, queryByText } = _testHelper.renderWithRedux(<Navbar auth={authLoggedOut}></Navbar>);
+        const { getByText, queryByText } = _testHelper.renderWithRedux(<Navbar auth={authLoggedIn}></Navbar>);
 
         const teamsButton = getByText('Teams');
 
