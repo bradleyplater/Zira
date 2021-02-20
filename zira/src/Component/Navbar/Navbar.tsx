@@ -33,27 +33,29 @@ export default function Navbar({ auth }: NavbarProps): JSX.Element {
             </button>
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul className="navbar-nav">
-                    <li className="nav-item dropdown">
-                        <a
-                            className="nav-link dropdown-toggle"
-                            href="#"
-                            id="navbarDropdownMenuLink"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                        >
-                            Teams
-                        </a>
-                        <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <button className="dropdown-item">Add Team</button>
-                            {teamsState.teams &&
-                                teamsState.teams.map((team: Team) => (
-                                    <a className="dropdown-item" href={'/team/' + team.name} key={team.name}>
-                                        {team.name}
-                                    </a>
-                                ))}
-                        </div>
-                    </li>
+                    {auth.isAuthenticated && (
+                        <li className="nav-item dropdown">
+                            <a
+                                className="nav-link dropdown-toggle"
+                                href="#"
+                                id="navbarDropdownMenuLink"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                            >
+                                Teams
+                            </a>
+                            <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <button className="dropdown-item">Add Team</button>
+                                {teamsState.teams &&
+                                    teamsState.teams.map((team: Team) => (
+                                        <a className="dropdown-item" href={'/team/' + team.name} key={team.name}>
+                                            {team.name}
+                                        </a>
+                                    ))}
+                            </div>
+                        </li>
+                    )}
                     <li className="nav-item">
                         {auth.isAuthenticated ? (
                             <NavLink

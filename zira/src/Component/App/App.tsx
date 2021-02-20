@@ -9,9 +9,11 @@ import { AuthProps } from '../../Models/PropTypes';
 import { useAuth0 } from '@auth0/auth0-react';
 
 function App(): JSX.Element {
-    const { isAuthenticated, user } = useAuth0();
+    const { isAuthenticated, user, loginWithRedirect, logout } = useAuth0();
 
     const auth: AuthProps = {
+        loginWithRedirect: loginWithRedirect,
+        logout: logout,
         isAuthenticated: isAuthenticated,
         user: user,
     };
