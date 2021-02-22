@@ -6,10 +6,15 @@ using ziraApi.Interfaces;
 
 namespace ziraApi.Models
 {
-    public class User : IUser
+    public class PostUser : IUser
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
+
+
+        public bool IsValid()
+        {
+            return Name != null && Email != null ? true : false;
+        }
     }
 }
