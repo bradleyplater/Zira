@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ziraApi.Interfaces;
 using ziraApi.Models;
 
 namespace ziraApi.Data
@@ -30,6 +31,24 @@ namespace ziraApi.Data
                     return null;
                 }
             }
+        }
+
+        public static async Task<IUser> PostUser(MySqlDatabase database, PostUser postedUser)
+        {
+            var user = await GetUserByEmail(database, postedUser.Email);
+            if(user == null)
+            {
+                var cmd = database.Connection.CreateCommand();
+                cmd.CommandText = "INSERT INTO users (Name, Email) VALUES(@name,@email)";
+                cmd.Parameters.AddWithValue("@name", postedUser.Name);
+                cmd.Parameters.AddWithValue("@email", postedUser.Email);
+                cmd.ExecuteNonQuery();
+                return postedUser;
+            } else
+            {
+                return null;
+            }
+            
         }
     }
 }

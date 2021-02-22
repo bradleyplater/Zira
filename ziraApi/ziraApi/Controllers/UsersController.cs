@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ziraApi.Data;
 using ziraApi.Interfaces;
+using ziraApi.Models;
 
 namespace ziraApi.Controllers
 {
@@ -35,6 +36,27 @@ namespace ziraApi.Controllers
             else
             {
                 return NotFound();
+            }
+        }
+
+        [HttpPost]
+        [Route("")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        public ActionResult PostUser(PostUser postedUser)
+        {
+            if (postedUser.IsValid())
+            {
+                var entity = UserDatabase.PostUser(_mySqlDatabase, postedUser);
+                if(entity.Result == null)
+                {
+                    return Conflict();
+                }
+                return CreatedAtAction(nameof(GetUsers), entity.Result);
+            } else
+            {
+                return BadRequest();
             }
         }
     }
