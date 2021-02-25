@@ -7,6 +7,7 @@ import Profile from '../Profile/Profile';
 
 import { AuthProps } from '../../Models/PropTypes';
 import { useAuth0 } from '@auth0/auth0-react';
+import CreateProfile from '../CreateProfile/CreateProfile';
 
 function App(): JSX.Element {
     const { isAuthenticated, user, loginWithRedirect, logout } = useAuth0();
@@ -23,8 +24,11 @@ function App(): JSX.Element {
             <Router>
                 <Navbar auth={auth} />
                 <Switch>
-                    <Route path="/profile">
+                    <Route exact path="/profile">
                         <Profile auth={auth}></Profile>
+                    </Route>
+                    <Route exact path="/create-profile">
+                        <CreateProfile></CreateProfile>
                     </Route>
                 </Switch>
             </Router>
