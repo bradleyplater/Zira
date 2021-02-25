@@ -1,4 +1,5 @@
 import React from 'react';
+import CreateProfileForm from '../CreateProfileForm/CreateProfileForm';
 import './CreateProfile.css';
 
 export default function CreateProfile() {
@@ -6,6 +7,7 @@ export default function CreateProfile() {
         <div className="background-container">
             <div className="form-container">
                 <h1 className="test">Create Profile</h1>
+                <CreateProfileForm></CreateProfileForm>
             </div>
         </div>
     );
