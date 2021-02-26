@@ -1,4 +1,5 @@
 import React from 'react';
+import './FormTextInput.css';
 
 export default function FormTextInput() {
     return (
