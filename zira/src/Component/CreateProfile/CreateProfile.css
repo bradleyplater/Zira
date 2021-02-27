@@ -9,10 +9,15 @@
 }
 
 .form-container {
+    text-align: left;
     background-color: white;
     height: 60%;
     width: 35%;
     border-radius: 25px;
+}
+
+.header {
+    text-align: center;
 }
 
 .test {
