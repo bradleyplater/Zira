@@ -5,6 +5,9 @@ export const USER_LOADING = 'USER_LOADING';
 export const USER_SUCCESS = 'USER_SUCCESS';
 export const USER_FAILED = 'USER_FAILED';
 
+export const API_CALL_STARTED = 'API_CALL_STARTED';
+export const USER_CREATED = 'USER_CREATED';
+
 export interface UserLoading {
     type: typeof USER_LOADING;
 }
@@ -18,4 +21,12 @@ export interface UserFail {
     type: typeof USER_FAILED;
 }
 
-export type UserDispatchTypes = UserLoading | UserSuccess | UserFail;
+export interface ApiCallStarted {
+    type: typeof API_CALL_STARTED;
+}
+
+export interface UserCreated {
+    type: typeof USER_CREATED;
+}
+
+export type UserDispatchTypes = UserLoading | UserSuccess | UserFail | ApiCallStarted | UserCreated;

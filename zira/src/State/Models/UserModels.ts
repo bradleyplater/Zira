@@ -8,4 +8,6 @@ export interface IUserState {
     loading: boolean;
     user?: User;
     redirectTo: boolean;
+    isApiBeingCalled: boolean;
+    isUserCreated?: boolean;
 }
