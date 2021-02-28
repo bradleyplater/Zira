@@ -37,7 +37,11 @@ export const CreateUser = (formData: any, email: string) => async (
             Email: email,
             Name: formData.firstName + ' ' + formData.surname,
         })
-        .then(() => {
-            dispatch({ type: USER_CREATED });
+        .then((response) => {
+            if (response.status === 201) {
+                dispatch({ type: USER_CREATED });
+            } else {
+                console.log('error');
+            }
         });
 };

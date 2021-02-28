@@ -11,6 +11,7 @@ import teamsReducer from '../../State/Teams/teamsReducer';
 import { createMemoryHistory } from 'history';
 import { TestCase, TestData } from './TestTypes';
 import { uniqueNamesGenerator, names, Config } from 'unique-names-generator';
+
 export default class TestHelper {
     private _numberOfCases: number;
     public get numberOfCases(): number {
@@ -47,6 +48,10 @@ export default class TestHelper {
 
     setUpMock(data: any): void {
         mockedAxios.get.mockResolvedValueOnce(data);
+    }
+
+    setUpPostMock(data: any): void {
+        mockedAxios.post.mockResolvedValueOnce(data);
     }
 
     getProfileTestCases(): TestCase[] {

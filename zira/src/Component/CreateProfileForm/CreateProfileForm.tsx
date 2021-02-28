@@ -7,13 +7,13 @@ import { RootStore } from '../../State/Store';
 import { useDispatch, useSelector } from 'react-redux';
 import { CreateUser } from '../../State/User/UserActions/UserActions';
 import { useHistory } from 'react-router-dom';
+import { CreateProfileFormProps } from '../../Models/PropTypes';
 
-export default function CreateProfileForm() {
+export default function CreateProfileForm({ isAuthenticated, user }: CreateProfileFormProps) {
     const userState = useSelector((state: RootStore) => state.user);
 
     const { register, handleSubmit, errors } = useForm();
     const dispatch = useDispatch();
-    const { isAuthenticated, user } = useAuth0();
     const history = useHistory();
 
     const onSubmit = (data: any) => {

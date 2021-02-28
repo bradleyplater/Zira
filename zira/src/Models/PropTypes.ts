@@ -14,3 +14,8 @@ export type NavbarProps = {
 export type ProfileProps = {
     auth: AuthProps;
 };
+
+export type CreateProfileFormProps = {
+    isAuthenticated: boolean;
+    user: any;
+};
