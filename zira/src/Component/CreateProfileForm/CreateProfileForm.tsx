@@ -1,7 +1,6 @@
 import React from 'react';
 import './CreateProfileForm.css';
 import { useForm } from 'react-hook-form';
-import { useAuth0 } from '@auth0/auth0-react';
 import Loader from 'react-loader-spinner';
 import { RootStore } from '../../State/Store';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,7 +15,7 @@ export default function CreateProfileForm({ isAuthenticated, user }: CreateProfi
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const onSubmit = (data: any) => {
+    const onSubmit = (data: any): any => {
         dispatch(CreateUser(data, user.email));
     };
 
@@ -28,9 +27,10 @@ export default function CreateProfileForm({ isAuthenticated, user }: CreateProfi
         return (
             <div>
                 {userState.isApiBeingCalled ? (
-                    <Loader type="Oval" color="black"></Loader>
+                    <Loader type="Oval" color="black" data-testid="spinner"></Loader>
                 ) : (
                     <form onSubmit={handleSubmit(onSubmit)}>
+                        {userState.errors[0] && <small>{userState.errors[userState.errors.length - 1].Message}</small>}
                         <div className="form-group">
                             <label htmlFor="email">Email</label>
                             <input
