@@ -50,8 +50,8 @@ export default class TestHelper {
         mockedAxios.get.mockResolvedValueOnce(data);
     }
 
-    setUpPostMock(data: any): void {
-        mockedAxios.post.mockResolvedValueOnce(data);
+    setUpPostMock(data: any): any {
+        return mockedAxios.post.mockResolvedValueOnce(data);
     }
 
     getProfileTestCases(): TestCase[] {
