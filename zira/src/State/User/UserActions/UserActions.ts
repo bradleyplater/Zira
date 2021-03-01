@@ -5,6 +5,7 @@ import {
     API_CALL_STARTED,
     UserDispatchTypes,
     USER_CREATED,
+    USER_CREATION_FAILED,
     USER_FAILED,
     USER_LOADING,
     USER_SUCCESS,
@@ -41,7 +42,7 @@ export const CreateUser = (formData: any, email: string) => async (
             if (response.status === 201) {
                 dispatch({ type: USER_CREATED });
             } else {
-                console.log('error');
+                dispatch({ type: USER_CREATION_FAILED });
             }
         });
 };
