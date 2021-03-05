@@ -1,13 +1,29 @@
-#intro {
+.bg-container {
+    background-image: url('../../Resources/Background.jpg');
     position: fixed;
     height: 100%;
     width: 100%;
-}
-
-#intro {
-    background: url('../../Resources/Background.jpg');
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.btn-group-color {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 50%;
+    width: 50%;
+    background-color: rgba(75, 70, 70, 0.7);
+    border-radius: 50px;
 }

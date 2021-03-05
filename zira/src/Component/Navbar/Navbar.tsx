@@ -7,10 +7,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Team } from '../../State/Models/TeamsModels';
 import { NavbarProps } from '../../Models/PropTypes';
 import { RootStore } from '../../State/Store';
+import { View } from '../../State/Models/ViewsModels';
 
 export default function Navbar({ auth }: NavbarProps): JSX.Element {
     const teamsState = useSelector((state: RootStore) => state.teams);
+    const viewsState = useSelector((state: RootStore) => state.views);
+
     const dispatch = useDispatch();
+
+    if (viewsState.currentView == View.LandingPage) {
+        return <div></div>;
+    }
 
     if (teamsState.teams == undefined && teamsState.loading != true) {
         dispatch(GetTeams());

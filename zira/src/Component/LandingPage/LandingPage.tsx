@@ -13,8 +13,20 @@ export default function LandingPage() {
         dispatch(SetCurrentView(View.LandingPage));
     }
     return (
-        <div id="intro" className="view">
-            <div className="mask"></div>
+        <div className="bg-container">
+            <h1>Zira</h1>
+            <div className="btn-container">
+                <div className="btn-group-color">
+                    <h3>New to Zira?</h3>
+                    <button type="button" className="btn btn-outline-primary">
+                        Get Started
+                    </button>
+                    <h3>Already have an Account?</h3>
+                    <button type="button" className="btn btn-outline-primary">
+                        Login
+                    </button>
+                </div>
+            </div>
         </div>
     );
 }
