@@ -3,7 +3,7 @@ import * as React from 'react';
 import '@testing-library/jest-dom';
 import TestHelper from '../../TestHelpers/TestHelper';
 import CreateProfileForm from '../CreateProfileForm';
-import { fireEvent, waitFor } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 
 const _testHelper: TestHelper = new TestHelper();
 
@@ -36,6 +36,7 @@ describe('CreateProfileForm Can Render - ', () => {
         const { queryByText } = _testHelper.renderWithRedux(
             <CreateProfileForm isAuthenticated={false} user={{ email: 'test@email.com' }}></CreateProfileForm>,
         );
+
         const email = queryByText('Email');
 
         expect(email).toBeNull();
@@ -49,14 +50,10 @@ describe('CreateForm user interaction tests - ', () => {
             <CreateProfileForm isAuthenticated={true} user={{ email: 'test@email.com' }}></CreateProfileForm>,
         );
 
-        const firstNameInput = getByLabelText('First Name');
-        const surnameInput = getByLabelText('Surname');
-        const submit = getByText('Submit');
-
-        await waitFor(async () => {
-            fireEvent.input(firstNameInput, { target: { value: 'John' } });
-            fireEvent.input(surnameInput, { target: { value: 'Doe' } });
-            fireEvent.click(submit);
+        await waitFor(() => {
+            _testHelper.getInputAndEnterText(getByLabelText, 'First Name', 'John');
+            _testHelper.getInputAndEnterText(getByLabelText, 'Surname', 'Doe');
+            _testHelper.getButtonAndClick(getByText, 'Submit');
         });
         expect(apiMock).toHaveBeenCalled();
     });
@@ -66,12 +63,9 @@ describe('CreateForm user interaction tests - ', () => {
             <CreateProfileForm isAuthenticated={true} user={{ email: 'test@email.com' }}></CreateProfileForm>,
         );
 
-        const firstNameInput = getByLabelText('First Name');
-        const submit = getByText('Submit');
-
-        await waitFor(async () => {
-            fireEvent.input(firstNameInput, { target: { value: 'John' } });
-            fireEvent.click(submit);
+        await waitFor(() => {
+            _testHelper.getInputAndEnterText(getByLabelText, 'First Name', 'John');
+            _testHelper.getButtonAndClick(getByText, 'Submit');
         });
 
         getByText('Surname cannot be empty');
@@ -82,12 +76,9 @@ describe('CreateForm user interaction tests - ', () => {
             <CreateProfileForm isAuthenticated={true} user={{ email: 'test@email.com' }}></CreateProfileForm>,
         );
 
-        const surnameInput = getByLabelText('Surname');
-        const submit = getByText('Submit');
-
-        await waitFor(async () => {
-            fireEvent.input(surnameInput, { target: { value: 'Doe' } });
-            fireEvent.click(submit);
+        await waitFor(() => {
+            _testHelper.getInputAndEnterText(getByLabelText, 'Surname', 'Doe');
+            _testHelper.getButtonAndClick(getByText, 'Submit');
         });
 
         getByText('First Name cannot be empty');
@@ -98,10 +89,8 @@ describe('CreateForm user interaction tests - ', () => {
             <CreateProfileForm isAuthenticated={true} user={{ email: 'test@email.com' }}></CreateProfileForm>,
         );
 
-        const submit = getByText('Submit');
-
-        await waitFor(async () => {
-            fireEvent.click(submit);
+        await waitFor(() => {
+            _testHelper.getButtonAndClick(getByText, 'Submit');
         });
 
         getByText('First Name cannot be empty');
@@ -113,14 +102,10 @@ describe('CreateForm user interaction tests - ', () => {
             <CreateProfileForm isAuthenticated={true} user={{ email: 'test@email.com' }}></CreateProfileForm>,
         );
 
-        const firstNameInput = getByLabelText('First Name');
-        const surnameInput = getByLabelText('Surname');
-        const submit = getByText('Submit');
-
-        await waitFor(async () => {
-            fireEvent.input(firstNameInput, { target: { value: 'John' } });
-            fireEvent.input(surnameInput, { target: { value: 'Doe' } });
-            fireEvent.click(submit);
+        await waitFor(() => {
+            _testHelper.getInputAndEnterText(getByLabelText, 'First Name', 'John');
+            _testHelper.getInputAndEnterText(getByLabelText, 'Surname', 'Doe');
+            _testHelper.getButtonAndClick(getByText, 'Submit');
         });
 
         getByText('User Creation Failed. Please Try Again');
