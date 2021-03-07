@@ -48,13 +48,6 @@ describe('Navbar Can Render with correct text - ', () => {
         getByText('logout');
     });
 
-    it('When isAuthenticated is false "login" should be on Navbar', () => {
-        _testHelper.setUpMock(dataWithTeams);
-        const { getByText } = _testHelper.renderWithRedux(<Navbar auth={authLoggedOut}></Navbar>);
-
-        getByText('login');
-    });
-
     it('When isAuthenticated is true "Teams" should be on Navbar', () => {
         _testHelper.setUpMock(dataWithTeams);
         const { getByText } = _testHelper.renderWithRedux(<Navbar auth={authLoggedIn}></Navbar>);
@@ -119,18 +112,6 @@ describe('Navbar - Teams dropdown populates correctly - ', () => {
 });
 
 describe('Navbar User Interaction tests', () => {
-    it('When user clicks login, loginWithRedirect is called', async () => {
-        _testHelper.setUpMock(dataWithTeams);
-        const { getByText } = _testHelper.renderWithRedux(<Navbar auth={authLoggedOut}></Navbar>);
-
-        await waitFor(() => {
-            const button = getByText('login');
-            fireEvent.click(button);
-
-            expect(loginWithRedirect).toBeCalled();
-        });
-    });
-
     it('When user clicks logout, logout is called', async () => {
         _testHelper.setUpMock(dataWithTeams);
         const { getByText } = _testHelper.renderWithRedux(<Navbar auth={authLoggedIn}></Navbar>);
@@ -143,22 +124,3 @@ describe('Navbar User Interaction tests', () => {
         });
     });
 });
-
-/*
-Will handle this when completing the test case work
-describe('Navbar - Teams links send to the correct route - ', () => {
-    teamsStateWithTeams.teams?.forEach((team) => {
-        it(`When clicking on '${team.name}' from the dropdown it should send you to '/team/${team.name}'`, () => {
-            const { getByText } = renderLogin(authLoggedIn, teamsStateWithTeams);
-
-            const teamsButton = getByText('Teams');
-
-            fireEvent.click(teamsButton);
-            const teamButton = getByText(team.name);
-            fireEvent.click(teamButton);
-
-            getByText(team.name);
-        });
-    });
-});
-*/

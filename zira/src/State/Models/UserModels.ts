@@ -8,4 +8,11 @@ export interface IUserState {
     loading: boolean;
     user?: User;
     redirectTo: boolean;
+    isApiBeingCalled: boolean;
+    isUserCreated?: boolean;
+    errors: Error[];
 }
+
+export type Error = {
+    Message: string;
+};

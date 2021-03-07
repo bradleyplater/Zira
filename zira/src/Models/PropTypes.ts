@@ -1,8 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* istanbul ignore file */
-import { ITeamsState } from '../State/Models/TeamsModels';
-import { IUserState } from '../State/Models/UserModels';
-
 export type AuthProps = {
     loginWithRedirect?: any;
     isAuthenticated?: boolean;
@@ -16,4 +13,13 @@ export type NavbarProps = {
 
 export type ProfileProps = {
     auth: AuthProps;
+};
+
+export type CreateProfileFormProps = {
+    isAuthenticated: boolean;
+    user: any;
+};
+
+export type LandingPageProps = {
+    loginWithRedirect: any;
 };

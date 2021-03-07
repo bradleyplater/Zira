@@ -1,7 +1,15 @@
 /*DEV DEPENDENCIES */
 import axios from 'axios';
 import { Dispatch } from 'redux';
-import { UserDispatchTypes, USER_FAILED, USER_LOADING, USER_SUCCESS } from './UserActionTypes';
+import {
+    API_CALL_STARTED,
+    UserDispatchTypes,
+    USER_CREATED,
+    USER_CREATION_FAILED,
+    USER_FAILED,
+    USER_LOADING,
+    USER_SUCCESS,
+} from './UserActionTypes';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const GetUserByEmail = (email: string) => async (dispatch: Dispatch<UserDispatchTypes>): Promise<any> => {
@@ -18,4 +26,23 @@ export const GetUserByEmail = (email: string) => async (dispatch: Dispatch<UserD
     } catch (e) {
         dispatch({ type: USER_FAILED });
     }
+};
+
+export const CreateUser = (formData: any, email: string) => async (
+    dispatch: Dispatch<UserDispatchTypes>,
+): Promise<any> => {
+    dispatch({ type: API_CALL_STARTED });
+
+    axios
+        .post('https://localhost:44353/api/v1/users', {
+            Email: email,
+            Name: formData.firstName + ' ' + formData.surname,
+        })
+        .then((response) => {
+            if (response.status === 201) {
+                dispatch({ type: USER_CREATED });
+            } else {
+                dispatch({ type: USER_CREATION_FAILED });
+            }
+        });
 };

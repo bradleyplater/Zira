@@ -1,0 +1,38 @@
+.bg-container {
+    background-image: url('../../Resources/Background.jpg');
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding: 6%;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 85%;
+    width: 100%;
+}
+
+.btn-group-color {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 50%;
+    width: 50%;
+    background-color: rgba(75, 70, 70, 0.7);
+    border-radius: 50px;
+}
+
+.header-white {
+    color: white;
+}
+
+.header-large {
+    font-size: 3.5rem;
+}
