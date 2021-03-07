@@ -41,14 +41,14 @@ describe('Navbar Can Render - ', () => {
 });
 
 describe('Navbar Can Render with correct text - ', () => {
-    it('When isAuthenticated is true "logout" should be on Navbar', () => {
+    it('"Logout" should be on Navbar', () => {
         _testHelper.setUpMock(dataWithTeams);
         const { getByText } = _testHelper.renderWithRedux(<Navbar auth={authLoggedIn}></Navbar>);
 
         getByText('logout');
     });
 
-    it('When isAuthenticated is true "Teams" should be on Navbar', () => {
+    it('"Teams" should be on Navbar', () => {
         _testHelper.setUpMock(dataWithTeams);
         const { getByText } = _testHelper.renderWithRedux(<Navbar auth={authLoggedIn}></Navbar>);
 
@@ -57,28 +57,25 @@ describe('Navbar Can Render with correct text - ', () => {
 });
 
 describe('Navbar - Teams dropdown populates correctly - ', () => {
-    it('When isAuthenticated is true and teamsState has teams there should be all 3 teams in the dropdown', async () => {
+    it('When there are teams in state there should be all teams in the dropdown', async () => {
         _testHelper.setUpMock(dataWithTeams);
 
         const { getByText } = _testHelper.renderWithRedux(<Navbar auth={authLoggedIn}></Navbar>);
 
-        const teamsButton = getByText('Teams');
+        _testHelper.getButtonAndClick(getByText, 'Teams');
 
-        fireEvent.click(teamsButton);
         await waitFor(() => {
             getByText('team 1');
             getByText('team 2');
             getByText('team 3');
         });
     });
-    it('When isAuthenticated is true and teamsState has no teams there should be no teams in the dropdown', async () => {
+    it('When there are no team in state there should be no teams in the dropdown', async () => {
         _testHelper.setUpMock(dataWithoutTeams);
 
         const { getByText, queryByText } = _testHelper.renderWithRedux(<Navbar auth={authLoggedIn}></Navbar>);
 
-        const teamsButton = getByText('Teams');
-
-        fireEvent.click(teamsButton);
+        _testHelper.getButtonAndClick(getByText, 'Teams');
 
         await waitFor(() => {
             const team1 = queryByText('team 1');
@@ -90,14 +87,12 @@ describe('Navbar - Teams dropdown populates correctly - ', () => {
             expect(team3).toBeNull();
         });
     });
-    it('When isAuthenticated is true but api returns a 500 no errors occur', async () => {
+    it('When api returns a 500 no errors occur', async () => {
         _testHelper.setUpMock(dataApiError);
 
         const { getByText, queryByText } = _testHelper.renderWithRedux(<Navbar auth={authLoggedIn}></Navbar>);
 
-        const teamsButton = getByText('Teams');
-
-        fireEvent.click(teamsButton);
+        _testHelper.getButtonAndClick(getByText, 'Teams');
 
         await waitFor(() => {
             const team1 = queryByText('team 1');
@@ -117,8 +112,7 @@ describe('Navbar User Interaction tests', () => {
         const { getByText } = _testHelper.renderWithRedux(<Navbar auth={authLoggedIn}></Navbar>);
 
         await waitFor(() => {
-            const button = getByText('logout');
-            fireEvent.click(button);
+            _testHelper.getButtonAndClick(getByText, 'logout');
 
             expect(logout).toBeCalled();
         });

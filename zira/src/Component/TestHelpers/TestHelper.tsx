@@ -1,5 +1,5 @@
 /* istanbul ignore file */
-import { fireEvent, getByText, render } from '@testing-library/react';
+import { fireEvent, Matcher, render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { Route, Router, Switch } from 'react-router-dom';
 import { applyMiddleware, combineReducers, createStore } from 'redux';
@@ -9,21 +9,9 @@ import Location from './Location';
 import mockedAxios from '../../__mocks__/axios';
 import teamsReducer from '../../State/Teams/teamsReducer';
 import { createMemoryHistory } from 'history';
-import { TestCase, TestData } from './TestTypes';
-import { uniqueNamesGenerator, names, Config } from 'unique-names-generator';
 import viewsReducer from '../../State/Views/viewsReducer';
 
 export default class TestHelper {
-    private _numberOfCases: number;
-    public get numberOfCases(): number {
-        return this._numberOfCases;
-    }
-    public set numberOfCases(v: number) {
-        this._numberOfCases = v;
-    }
-    constructor(numberOfCases = 3) {
-        this._numberOfCases = numberOfCases;
-    }
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     renderWithRedux(component: JSX.Element) {
         const store = this.setUpStore();
@@ -42,11 +30,19 @@ export default class TestHelper {
         );
     }
 
-    getButtonAndClick(query: any, textToGet: string): void {
+    //USER ACTION
+
+    getButtonAndClick(query: (text: Matcher) => HTMLElement, textToGet: string): void {
         const button = query(textToGet);
         fireEvent.click(button);
     }
 
+    getInputAndEnterText(query: (text: Matcher) => HTMLElement, textToGet: string, textToInput: string): void {
+        const input = query(textToGet);
+        fireEvent.input(input, { target: { value: textToInput } });
+    }
+
+    //REDUX SET UP
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setUpStore() {
         return createStore(
@@ -55,32 +51,13 @@ export default class TestHelper {
         );
     }
 
+    //MOCK SET UPS
+
     setUpMock(data: any): void {
         mockedAxios.get.mockResolvedValueOnce(data);
     }
 
     setUpPostMock(data: any): any {
         return mockedAxios.post.mockResolvedValueOnce(data);
-    }
-
-    getProfileTestCases(): TestCase[] {
-        const testCases: TestCase[] = [];
-        const config: Config = {
-            dictionaries: [names],
-        };
-        for (let i = 0; i < this.numberOfCases; i++) {
-            const name = uniqueNamesGenerator(config);
-            const email = name + '@email.com';
-            const testData: TestData = {
-                data: { name: name, email: email },
-                status: 200,
-            };
-            const testCase: TestCase = {
-                iteration: i,
-                data: testData,
-            };
-            testCases.push(testCase);
-        }
-        return testCases;
     }
 }
