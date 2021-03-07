@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 export enum View {
     LandingPage = 'LANDINGPAGE',
     Profile = 'PROFILE',
@@ -5,5 +6,5 @@ export enum View {
 }
 
 export interface IViewsState {
-    currentView: View;
+    currentView?: View;
 }

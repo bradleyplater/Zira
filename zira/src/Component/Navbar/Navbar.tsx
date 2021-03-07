@@ -24,7 +24,7 @@ export default function Navbar({ auth }: NavbarProps): JSX.Element {
     }
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <NavLink className="navbar-brand" to="/">
+            <NavLink className="navbar-brand" to="/profile">
                 Navbar
             </NavLink>
             <button
@@ -64,19 +64,13 @@ export default function Navbar({ auth }: NavbarProps): JSX.Element {
                         </li>
                     )}
                     <li className="nav-item">
-                        {auth.isAuthenticated ? (
-                            <NavLink
-                                className="nav-link"
-                                to="#"
-                                onClick={() => auth.logout({ returnTo: window.location.origin })}
-                            >
-                                logout
-                            </NavLink>
-                        ) : (
-                            <NavLink className="nav-link" to="#" onClick={() => auth.loginWithRedirect()}>
-                                login
-                            </NavLink>
-                        )}
+                        <NavLink
+                            className="nav-link"
+                            to="#"
+                            onClick={() => auth.logout({ returnTo: window.location.origin })}
+                        >
+                            logout
+                        </NavLink>
                     </li>
                 </ul>
             </div>

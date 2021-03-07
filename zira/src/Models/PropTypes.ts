@@ -19,3 +19,7 @@ export type CreateProfileFormProps = {
     isAuthenticated: boolean;
     user: any;
 };
+
+export type LandingPageProps = {
+    loginWithRedirect: any;
+};

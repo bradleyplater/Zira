@@ -32,7 +32,7 @@ function App(): JSX.Element {
                         <CreateProfile></CreateProfile>
                     </Route>
                     <Route exact path="/">
-                        <LandingPage></LandingPage>
+                        <LandingPage loginWithRedirect={loginWithRedirect}></LandingPage>
                     </Route>
                 </Switch>
             </Router>

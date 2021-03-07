@@ -1,9 +1,7 @@
-import { IViewsState, View } from '../Models/ViewsModels';
+import { IViewsState } from '../Models/ViewsModels';
 import { SET_CURRENT_VIEW, ViewsDispatchTypes } from './ViewsActions/ViewsActionTypes';
 
-const defaultState: IViewsState = {
-    currentView: View.LandingPage,
-};
+const defaultState: IViewsState = {};
 
 const viewsReducer = (state: IViewsState = defaultState, action: ViewsDispatchTypes): IViewsState => {
     switch (action.type) {

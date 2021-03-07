@@ -1,5 +1,5 @@
 /* istanbul ignore file */
-import { render } from '@testing-library/react';
+import { fireEvent, getByText, render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { Route, Router, Switch } from 'react-router-dom';
 import { applyMiddleware, combineReducers, createStore } from 'redux';
@@ -11,6 +11,7 @@ import teamsReducer from '../../State/Teams/teamsReducer';
 import { createMemoryHistory } from 'history';
 import { TestCase, TestData } from './TestTypes';
 import { uniqueNamesGenerator, names, Config } from 'unique-names-generator';
+import viewsReducer from '../../State/Views/viewsReducer';
 
 export default class TestHelper {
     private _numberOfCases: number;
@@ -41,9 +42,17 @@ export default class TestHelper {
         );
     }
 
+    getButtonAndClick(query: any, textToGet: string): void {
+        const button = query(textToGet);
+        fireEvent.click(button);
+    }
+
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setUpStore() {
-        return createStore(combineReducers({ user: userReducer, teams: teamsReducer }), applyMiddleware(thunk));
+        return createStore(
+            combineReducers({ user: userReducer, teams: teamsReducer, views: viewsReducer }),
+            applyMiddleware(thunk),
+        );
     }
 
     setUpMock(data: any): void {
