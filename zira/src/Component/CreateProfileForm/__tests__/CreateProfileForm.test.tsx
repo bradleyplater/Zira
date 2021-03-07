@@ -3,7 +3,7 @@ import * as React from 'react';
 import '@testing-library/jest-dom';
 import TestHelper from '../../TestHelpers/TestHelper';
 import CreateProfileForm from '../CreateProfileForm';
-import { fireEvent, waitFor } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 
 const _testHelper: TestHelper = new TestHelper();
 
@@ -36,6 +36,7 @@ describe('CreateProfileForm Can Render - ', () => {
         const { queryByText } = _testHelper.renderWithRedux(
             <CreateProfileForm isAuthenticated={false} user={{ email: 'test@email.com' }}></CreateProfileForm>,
         );
+
         const email = queryByText('Email');
 
         expect(email).toBeNull();
