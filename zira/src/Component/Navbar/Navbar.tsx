@@ -8,6 +8,8 @@ import { Team } from '../../State/Models/TeamsModels';
 import { NavbarProps } from '../../Models/PropTypes';
 import { RootStore } from '../../State/Store';
 import { View } from '../../State/Models/ViewsModels';
+import BaseModal from '../BaseModal/BaseModal';
+import CreateItemModalContent from '../CreateItemModal/CreateItemModalContent';
 
 export default function Navbar({ auth }: NavbarProps): JSX.Element {
     const teamsState = useSelector((state: RootStore) => state.teams);
@@ -15,9 +17,9 @@ export default function Navbar({ auth }: NavbarProps): JSX.Element {
 
     const dispatch = useDispatch();
 
-    if (viewsState.currentView == View.LandingPage) {
-        return <div></div>;
-    }
+    // if (viewsState.currentView == View.LandingPage) {
+    //     return <div></div>;
+    // }
 
     if (teamsState.teams == undefined && teamsState.loading != true) {
         dispatch(GetTeams());
@@ -64,6 +66,16 @@ export default function Navbar({ auth }: NavbarProps): JSX.Element {
                         </li>
                     )}
                     <li className="nav-item">
+                        <button
+                            type="button"
+                            className="btn btn-primary "
+                            data-toggle="modal"
+                            data-target="#exampleModalLong"
+                        >
+                            Create
+                        </button>
+                    </li>
+                    <li className="nav-item">
                         <NavLink
                             className="nav-link"
                             to="#"
@@ -74,6 +86,11 @@ export default function Navbar({ auth }: NavbarProps): JSX.Element {
                     </li>
                 </ul>
             </div>
+            <BaseModal>
+                {{
+                    ModalContent: <CreateItemModalContent></CreateItemModalContent>,
+                }}
+            </BaseModal>
         </nav>
     );
 }
