@@ -2,7 +2,13 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
 /*FILE DEPENDENCIES*/
-import { TeamsDispatchTypes, TEAMS_FAIL, TEAMS_LOADING, TEAMS_SUCCESS } from './TeamsActionTypes';
+import {
+    TeamsDispatchTypes,
+    TEAMS_API_CALL_STARTED,
+    TEAMS_FAIL,
+    TEAMS_LOADING,
+    TEAMS_SUCCESS,
+} from './TeamsActionTypes';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const GetTeams = () => async (dispatch: Dispatch<TeamsDispatchTypes>): Promise<any> => {
@@ -26,4 +32,10 @@ export const GetTeams = () => async (dispatch: Dispatch<TeamsDispatchTypes>): Pr
             type: TEAMS_FAIL,
         });
     }
+};
+
+export const CreateTeam = (team: any) => async (dispatch: Dispatch<TeamsDispatchTypes>): Promise<any> => {
+    try {
+        dispatch({ type: TEAMS_API_CALL_STARTED });
+    } catch (e) {}
 };

@@ -1,28 +1,24 @@
 import React, { ReactChild } from 'react';
-
+import './BaseModal.css';
 type BaseModalProps = {
     children: {
         ModalContent: ReactChild;
     };
+    ModalTitle: string;
+    ModalId: string;
+    ModalTitleId: string;
 };
 
-export default function BaseModal({ children }: BaseModalProps) {
+export default function BaseModal({ children, ModalTitle, ModalId, ModalTitleId }: BaseModalProps) {
     const { ModalContent } = children;
 
     return (
-        <div
-            className="modal fade"
-            id="exampleModalLong"
-            tabIndex={-1}
-            role="dialog"
-            aria-labelledby="exampleModalLongTitle"
-            aria-hidden="true"
-        >
+        <div className="modal fade" id={ModalId} tabIndex={-1} role="dialog" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLongTitle">
-                            Modal title
+                        <h5 className="modal-title text-center" id={ModalTitleId}>
+                            {ModalTitle}
                         </h5>
                         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>

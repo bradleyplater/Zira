@@ -10,6 +10,7 @@ import { RootStore } from '../../State/Store';
 import { View } from '../../State/Models/ViewsModels';
 import BaseModal from '../BaseModal/BaseModal';
 import CreateItemModalContent from '../CreateItemModal/CreateItemModalContent';
+import CreateItemModal from '../CreateItemModal/CreateItemModal';
 
 export default function Navbar({ auth }: NavbarProps): JSX.Element {
     const teamsState = useSelector((state: RootStore) => state.teams);
@@ -70,7 +71,7 @@ export default function Navbar({ auth }: NavbarProps): JSX.Element {
                             type="button"
                             className="btn btn-primary "
                             data-toggle="modal"
-                            data-target="#exampleModalLong"
+                            data-target="#createItemModal"
                         >
                             Create
                         </button>
@@ -86,11 +87,11 @@ export default function Navbar({ auth }: NavbarProps): JSX.Element {
                     </li>
                 </ul>
             </div>
-            <BaseModal>
+            <CreateItemModal>
                 {{
                     ModalContent: <CreateItemModalContent></CreateItemModalContent>,
                 }}
-            </BaseModal>
+            </CreateItemModal>
         </nav>
     );
 }

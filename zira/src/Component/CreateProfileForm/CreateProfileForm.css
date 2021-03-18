@@ -5,3 +5,7 @@
 .form-error-text {
     color: red;
 }
+
+.form-text {
+    text-align: left;
+}
