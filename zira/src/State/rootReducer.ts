@@ -6,11 +6,13 @@ import { combineReducers } from 'redux';
 import TeamsReducer from './Teams/teamsReducer';
 import UserReducer from './User/userReducer';
 import ViewsReducer from './Views/viewsReducer';
+import IssuesReducer from './Issues/issuesReducer';
 
 const RootReducer = combineReducers({
     teams: TeamsReducer,
     user: UserReducer,
     views: ViewsReducer,
+    issues: IssuesReducer,
 });
 
 export default RootReducer;

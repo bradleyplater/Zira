@@ -1,15 +1,8 @@
 import React, { ReactChild } from 'react';
 import './BaseModal.css';
-type BaseModalProps = {
-    children: {
-        ModalContent: ReactChild;
-    };
-    ModalTitle: string;
-    ModalId: string;
-    ModalTitleId: string;
-};
+import { BaseModalProps } from '../../Models/PropTypes';
 
-export default function BaseModal({ children, ModalTitle, ModalId, ModalTitleId }: BaseModalProps) {
+export default function BaseModal({ children, ModalTitle, ModalId, ModalTitleId }: BaseModalProps): JSX.Element {
     const { ModalContent } = children;
 
     return (

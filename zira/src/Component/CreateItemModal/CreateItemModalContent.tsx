@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { CreateIssue } from '../../State/Issues/IssuesActions/IssuesActions';
 import { RootStore } from '../../State/Store';
-import CreateTeamForm from '../CreateTeamForm/CreateTeamForm';
+import CreateIssueForm from '../CreateIssueForm/CreateIssueForm';
 import './CreateItemModal.css';
 
-export default function CreateItemModalContent() {
+export default function CreateItemModalContent(): JSX.Element {
     const { handleSubmit, register, errors } = useForm();
-    const userState = useSelector((state: RootStore) => state.user);
-
+    const dispatch = useDispatch();
     const [itemToCreate, setItemToCreate] = useState('');
 
     function handleOnChange(event: any) {
@@ -16,13 +16,16 @@ export default function CreateItemModalContent() {
     }
 
     const onSubmit = (data: any): any => {
-        console.log(data);
+        switch (itemToCreate) {
+            case 'issue':
+                dispatch(CreateIssue(data));
+        }
     };
 
     let formToRender: any;
     switch (itemToCreate) {
-        case 'team':
-            formToRender = <CreateTeamForm register={register} errors={errors}></CreateTeamForm>;
+        case 'issue':
+            formToRender = <CreateIssueForm register={register} errors={errors}></CreateIssueForm>;
     }
 
     return (
@@ -35,7 +38,7 @@ export default function CreateItemModalContent() {
                         </label>
                         <select className="form-control" id="itemToCreateSelect" onChange={handleOnChange}>
                             <option>Select an option</option>
-                            <option value="team">Team</option>
+                            <option value="issue">Issue</option>
                         </select>
                     </div>
                     {itemToCreate && <div>{formToRender}</div>}

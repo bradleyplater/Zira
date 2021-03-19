@@ -1,13 +1,8 @@
-import React, { ReactChild } from 'react';
+import React from 'react';
+import { CreateItemModalProps } from '../../Models/PropTypes';
 import BaseModal from '../BaseModal/BaseModal';
 
-export type CreateItemModalProps = {
-    children: {
-        ModalContent: ReactChild;
-    };
-};
-
-export default function CreateItemModal({ children }: CreateItemModalProps) {
+export default function CreateItemModal({ children }: CreateItemModalProps): JSX.Element {
     return (
         <BaseModal ModalTitle="Create Item" ModalId="createItemModal" ModalTitleId="createItemModalTitle">
             {{ ModalContent: children.ModalContent }}
