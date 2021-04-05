@@ -2,11 +2,11 @@ import React from 'react';
 import './CreateProfileForm.css';
 import { useForm } from 'react-hook-form';
 import Loader from 'react-loader-spinner';
-import { RootStore } from '../../State/Store';
+import { RootStore } from '../../../State/Store';
 import { useDispatch, useSelector } from 'react-redux';
-import { CreateUser } from '../../State/User/UserActions/UserActions';
+import { CreateUser } from '../../../State/User/UserActions/UserActions';
 import { useHistory } from 'react-router-dom';
-import { CreateProfileFormProps } from '../../Models/PropTypes';
+import { CreateProfileFormProps } from '../../../Models/PropTypes';
 
 export default function CreateProfileForm({ isAuthenticated, user }: CreateProfileFormProps) {
     const userState = useSelector((state: RootStore) => state.user);

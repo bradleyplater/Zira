@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import * as React from 'react';
-import '@testing-library/jest-dom';
 import CreateProfile from '../CreateProfile';
-import TestHelper from '../../TestHelpers/TestHelper';
+import TestHelper from '../../../TestHelpers/TestHelper';
 
 const _testHelper: TestHelper = new TestHelper();
 

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import * as React from 'react';
 import '@testing-library/jest-dom';
-import TestHelper from '../../TestHelpers/TestHelper';
+import TestHelper from '../../../TestHelpers/TestHelper';
 import CreateProfileForm from '../CreateProfileForm';
 import { waitFor } from '@testing-library/react';
 

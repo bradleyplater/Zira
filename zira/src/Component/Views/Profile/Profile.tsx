@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { ProfileProps } from '../../Models/PropTypes';
-import { View } from '../../State/Models/ViewsModels';
-import { RootStore } from '../../State/Store';
-import { GetUserByEmail } from '../../State/User/UserActions/UserActions';
-import { SetCurrentView } from '../../State/Views/ViewsActions/ViewsActions';
+import { ProfileProps } from '../../../Models/PropTypes';
+import { View } from '../../../State/Models/ViewsModels';
+import { RootStore } from '../../../State/Store';
+import { GetUserByEmail } from '../../../State/User/UserActions/UserActions';
+import { SetCurrentView } from '../../../State/Views/ViewsActions/ViewsActions';
 
 export default function Profile({ auth }: ProfileProps): JSX.Element {
     const userState = useSelector((state: RootStore) => state.user);

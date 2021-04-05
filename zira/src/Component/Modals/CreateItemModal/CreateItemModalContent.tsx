@@ -3,12 +3,12 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import { useToasts } from 'react-toast-notifications';
-import EnumHelper from '../../Helpers/EnumHelper';
-import { IssueTypes } from '../../Models/IssueTypes';
-import { CreateIssue } from '../../State/Issues/IssuesActions/IssuesActions';
-import { IssueForm, TransformedIssueForm } from '../../State/Models/IssuesModels';
-import { RootStore } from '../../State/Store';
-import CreateIssueForm from '../CreateIssueForm/CreateIssueForm';
+import EnumHelper from '../../../Helpers/EnumHelper';
+import { IssueTypes } from '../../../Models/IssueTypes';
+import { CreateIssue } from '../../../State/Issues/IssuesActions/IssuesActions';
+import { IssueForm, TransformedIssueForm } from '../../../State/Models/IssuesModels';
+import { RootStore } from '../../../State/Store';
+import CreateIssueForm from '../../Forms/CreateIssueForm/CreateIssueForm';
 import './CreateItemModal.css';
 
 export default function CreateItemModalContent(): JSX.Element {

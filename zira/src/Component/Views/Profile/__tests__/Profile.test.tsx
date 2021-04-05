@@ -5,8 +5,8 @@
 import React from 'react';
 import { waitFor } from '@testing-library/react';
 import Profile from '../Profile';
-import { AuthProps } from '../../../Models/PropTypes';
-import TestHelper from '../../TestHelpers/TestHelper';
+import { AuthProps } from '../../../../Models/PropTypes';
+import TestHelper from '../../../TestHelpers/TestHelper';
 
 const email = 'test@email.com';
 const authLoggedIn: AuthProps = { isAuthenticated: true, user: { name: 'test', email: email } };
