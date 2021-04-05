@@ -1,4 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { ReactChild } from 'react';
+
 /* istanbul ignore file */
 export type AuthProps = {
     loginWithRedirect?: any;
@@ -22,4 +25,25 @@ export type CreateProfileFormProps = {
 
 export type LandingPageProps = {
     loginWithRedirect: any;
+};
+
+export type CreateIssueFormProps = {
+    register: any;
+    errors: any;
+    control: any;
+};
+
+export type BaseModalProps = {
+    children: {
+        ModalContent: ReactChild;
+    };
+    ModalTitle: string;
+    ModalId: string;
+    ModalTitleId: string;
+};
+
+export type CreateItemModalProps = {
+    children: {
+        ModalContent: ReactChild;
+    };
 };

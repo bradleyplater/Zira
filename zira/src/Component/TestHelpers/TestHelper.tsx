@@ -10,6 +10,8 @@ import mockedAxios from '../../__mocks__/axios';
 import teamsReducer from '../../State/Teams/teamsReducer';
 import { createMemoryHistory } from 'history';
 import viewsReducer from '../../State/Views/viewsReducer';
+import { ToastProvider } from 'react-toast-notifications';
+import issuesReducer from '../../State/Issues/issuesReducer';
 
 export default class TestHelper {
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -17,16 +19,18 @@ export default class TestHelper {
         const store = this.setUpStore();
         const history = createMemoryHistory();
         return render(
-            <Provider store={store}>
-                <Router history={history}>
-                    <Switch>
-                        <Route path="/">{component}</Route>
-                        <Route path="/:route">
-                            <Location></Location>
-                        </Route>
-                    </Switch>
-                </Router>
-            </Provider>,
+            <ToastProvider>
+                <Provider store={store}>
+                    <Router history={history}>
+                        <Switch>
+                            <Route path="/">{component}</Route>
+                            <Route path="/:route">
+                                <Location></Location>
+                            </Route>
+                        </Switch>
+                    </Router>
+                </Provider>
+            </ToastProvider>,
         );
     }
 
@@ -46,7 +50,7 @@ export default class TestHelper {
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     setUpStore() {
         return createStore(
-            combineReducers({ user: userReducer, teams: teamsReducer, views: viewsReducer }),
+            combineReducers({ user: userReducer, teams: teamsReducer, views: viewsReducer, issues: issuesReducer }),
             applyMiddleware(thunk),
         );
     }
@@ -59,5 +63,9 @@ export default class TestHelper {
 
     setUpPostMock(data: any): any {
         return mockedAxios.post.mockResolvedValueOnce(data);
+    }
+
+    setUpRejectedPostMock(): any {
+        return mockedAxios.post.mockRejectedValueOnce(new Error('Api Error'));
     }
 }

@@ -21,15 +21,14 @@ namespace ziraApi.Data
                 {
                     var user = new User()
                     {
+                        Id = reader.GetFieldValue<int>(0),
                         Name = reader.GetFieldValue<string>(1),
                         Email = reader.GetFieldValue<string>(2)
                     };
 
                     return user;
-                } else
-                {
-                    return null;
                 }
+                return null;
             }
         }
 
@@ -44,10 +43,8 @@ namespace ziraApi.Data
                 cmd.Parameters.AddWithValue("@email", postedUser.Email);
                 cmd.ExecuteNonQuery();
                 return postedUser;
-            } else
-            {
-                return null;
             }
+            return null;
             
         }
     }
