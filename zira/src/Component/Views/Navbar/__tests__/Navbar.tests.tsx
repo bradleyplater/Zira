@@ -2,9 +2,8 @@
 import * as React from 'react';
 import { fireEvent, waitFor } from '@testing-library/react';
 import Navbar from '../Navbar';
-import { AuthProps } from '../../../Models/PropTypes';
-import '@testing-library/jest-dom';
-import TestHelper from '../../TestHelpers/TestHelper';
+import { AuthProps } from '../../../../Models/PropTypes';
+import TestHelper from '../../../TestHelpers/TestHelper';
 
 const _testHelper: TestHelper = new TestHelper();
 

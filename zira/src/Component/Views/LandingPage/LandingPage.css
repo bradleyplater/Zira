@@ -1,5 +1,5 @@
 .bg-container {
-    background-image: url('../../Resources/Background.jpg');
+    background-image: url('../../../Resources/Background.jpg');
     position: fixed;
     height: 100%;
     width: 100%;

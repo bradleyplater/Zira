@@ -1,5 +1,5 @@
 import React from 'react';
-import { CreateItemModalProps } from '../../Models/PropTypes';
+import { CreateItemModalProps } from '../../../Models/PropTypes';
 import BaseModal from '../BaseModal/BaseModal';
 
 export default function CreateItemModal({ children }: CreateItemModalProps): JSX.Element {

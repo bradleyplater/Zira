@@ -1,10 +1,10 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { View } from '../../State/Models/ViewsModels';
-import { RootStore } from '../../State/Store';
-import { SetCurrentView } from '../../State/Views/ViewsActions/ViewsActions';
-import CreateProfileForm from '../CreateProfileForm/CreateProfileForm';
+import { View } from '../../../State/Models/ViewsModels';
+import { RootStore } from '../../../State/Store';
+import { SetCurrentView } from '../../../State/Views/ViewsActions/ViewsActions';
+import CreateProfileForm from '../../Forms/CreateProfileForm/CreateProfileForm';
 import './CreateProfile.css';
 
 export default function CreateProfile() {

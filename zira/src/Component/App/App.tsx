@@ -1,14 +1,14 @@
 /* istanbul ignore file */
 import React from 'react';
-import Navbar from '../Navbar/Navbar';
+import Navbar from '../Views/Navbar/Navbar';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import Profile from '../Profile/Profile';
+import Profile from '../Views/Profile/Profile';
 
 import { AuthProps } from '../../Models/PropTypes';
 import { useAuth0 } from '@auth0/auth0-react';
-import CreateProfile from '../CreateProfile/CreateProfile';
-import LandingPage from '../LandingPage/LandingPage';
+import CreateProfile from '../Views/CreateProfile/CreateProfile';
+import LandingPage from '../Views/LandingPage/LandingPage';
 
 function App(): JSX.Element {
     const { isAuthenticated, user, loginWithRedirect, logout } = useAuth0();

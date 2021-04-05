@@ -1,4 +1,4 @@
-import TestHelper from '../../TestHelpers/TestHelper';
+import TestHelper from '../../../TestHelpers/TestHelper';
 import CreateItemModal from '../CreateItemModal';
 import CreateItemModalContent from '../CreateItemModalContent';
 import selectEvent from 'react-select-event';

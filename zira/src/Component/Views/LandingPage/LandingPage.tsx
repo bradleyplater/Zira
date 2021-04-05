@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { LandingPageProps } from '../../Models/PropTypes';
-import { View } from '../../State/Models/ViewsModels';
-import { RootStore } from '../../State/Store';
-import { SetCurrentView } from '../../State/Views/ViewsActions/ViewsActions';
+import { LandingPageProps } from '../../../Models/PropTypes';
+import { View } from '../../../State/Models/ViewsModels';
+import { RootStore } from '../../../State/Store';
+import { SetCurrentView } from '../../../State/Views/ViewsActions/ViewsActions';
 import './LandingPage.css';
 
 export default function LandingPage({ loginWithRedirect }: LandingPageProps) {

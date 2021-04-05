@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import TestHelper from '../../TestHelpers/TestHelper';
+import TestHelper from '../../../TestHelpers/TestHelper';
 import LandingPage from '../LandingPage';
 
 const _testHelper: TestHelper = new TestHelper();
