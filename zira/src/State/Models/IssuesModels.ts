@@ -11,3 +11,22 @@ export interface IIssue {
     Description: string;
     StoryPoints: number;
 }
+
+export type IssueForm = {
+    issueType: SelectOption;
+    issueTitle: string;
+    issueDescription: string;
+    issueStoryPoints: number;
+};
+
+export type TransformedIssueForm = {
+    issueType: IssueTypes;
+    issueTitle: string;
+    issueDescription: string;
+    issueStoryPoints: number;
+};
+
+export type SelectOption = {
+    label: string;
+    value: string;
+};

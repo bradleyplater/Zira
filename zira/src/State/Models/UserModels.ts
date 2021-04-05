@@ -1,5 +1,6 @@
 /* istanbul ignore file */
 export type User = {
+    id: number;
     name: string;
     email: string;
 };

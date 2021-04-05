@@ -1,31 +1,49 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import Select from 'react-select';
+import { useToasts } from 'react-toast-notifications';
+import EnumHelper from '../../Helpers/EnumHelper';
+import { IssueTypes } from '../../Models/IssueTypes';
 import { CreateIssue } from '../../State/Issues/IssuesActions/IssuesActions';
+import { IssueForm, TransformedIssueForm } from '../../State/Models/IssuesModels';
 import { RootStore } from '../../State/Store';
 import CreateIssueForm from '../CreateIssueForm/CreateIssueForm';
 import './CreateItemModal.css';
 
 export default function CreateItemModalContent(): JSX.Element {
-    const { handleSubmit, register, errors } = useForm();
-    const dispatch = useDispatch();
+    const userState = useSelector((state: RootStore) => state.user);
+    const { handleSubmit, register, errors, control } = useForm();
     const [itemToCreate, setItemToCreate] = useState('');
+    const { addToast } = useToasts();
+    const dispatch = useDispatch();
+
+    const itemToCreateSelectOptions = [{ value: 'issue', label: 'Issue' }];
 
     function handleOnChange(event: any) {
-        setItemToCreate(event.target.value);
+        setItemToCreate(event.value);
     }
 
-    const onSubmit = (data: any): any => {
+    const onSubmit = (data: IssueForm): any => {
+        const issueType = EnumHelper.convertStringToIssueTypesEnum(data.issueType.value);
+
+        const transformedData: TransformedIssueForm = {
+            issueDescription: data.issueDescription,
+            issueStoryPoints: data.issueStoryPoints,
+            issueTitle: data.issueTitle,
+            issueType: issueType,
+        };
+
         switch (itemToCreate) {
             case 'issue':
-                dispatch(CreateIssue(data));
+                dispatch(CreateIssue(transformedData, userState.user, addToast));
         }
     };
 
     let formToRender: any;
     switch (itemToCreate) {
         case 'issue':
-            formToRender = <CreateIssueForm register={register} errors={errors}></CreateIssueForm>;
+            formToRender = <CreateIssueForm register={register} errors={errors} control={control}></CreateIssueForm>;
     }
 
     return (
@@ -36,10 +54,11 @@ export default function CreateItemModalContent(): JSX.Element {
                         <label htmlFor="itemToCreateSelect" className="form-text">
                             Select Item to Create
                         </label>
-                        <select className="form-control" id="itemToCreateSelect" onChange={handleOnChange}>
-                            <option>Select an option</option>
-                            <option value="issue">Issue</option>
-                        </select>
+                        <Select
+                            options={itemToCreateSelectOptions}
+                            onChange={handleOnChange}
+                            inputId="itemToCreateSelect"
+                        ></Select>
                     </div>
                     {itemToCreate && <div>{formToRender}</div>}
                 </div>

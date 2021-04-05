@@ -31,7 +31,6 @@ namespace ziraApi.Controllers
             if (user != null)
             {
                 return Ok(await user);
-
             }
             else
             {

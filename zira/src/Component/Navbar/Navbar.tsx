@@ -15,12 +15,13 @@ import CreateItemModal from '../CreateItemModal/CreateItemModal';
 export default function Navbar({ auth }: NavbarProps): JSX.Element {
     const teamsState = useSelector((state: RootStore) => state.teams);
     const viewsState = useSelector((state: RootStore) => state.views);
+    const issuesState = useSelector((state: RootStore) => state.issues);
 
     const dispatch = useDispatch();
 
-    // if (viewsState.currentView == View.LandingPage) {
-    //     return <div></div>;
-    // }
+    if (viewsState.currentView == View.LandingPage) {
+        return <div></div>;
+    }
 
     if (teamsState.teams == undefined && teamsState.loading != true) {
         dispatch(GetTeams());

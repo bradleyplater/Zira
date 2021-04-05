@@ -30,6 +30,7 @@ export type LandingPageProps = {
 export type CreateIssueFormProps = {
     register: any;
     errors: any;
+    control: any;
 };
 
 export type BaseModalProps = {
