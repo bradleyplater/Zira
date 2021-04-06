@@ -1,8 +1,12 @@
+import { IIssue } from './IssuesModels';
+
 /* istanbul ignore file */
 export type User = {
     id: number;
-    name: string;
+    firstName: string;
+    surname: string;
     email: string;
+    issues: IIssue[];
 };
 
 export interface IUserState {

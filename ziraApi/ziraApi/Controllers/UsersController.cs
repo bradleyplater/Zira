@@ -28,7 +28,7 @@ namespace ziraApi.Controllers
         public async Task<ActionResult<IUser>> GetUsers(string email)
         {
             var user = UserDatabase.GetUserByEmail(_mySqlDatabase, email);
-            if (user != null)
+            if (user.Result != null)
             {
                 return Ok(await user);
             }
@@ -43,20 +43,19 @@ namespace ziraApi.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
-        public ActionResult PostUser(PostUser postedUser)
+        public ActionResult PostUser(User postedUser)
         {
-            if (postedUser.IsValid())
-            {
-                var entity = UserDatabase.PostUser(_mySqlDatabase, postedUser);
-                if(entity.Result == null)
-                {
-                    return Conflict();
-                }
-                return CreatedAtAction(nameof(GetUsers), entity.Result);
-            } else
+            if (!ModelState.IsValid)
             {
                 return BadRequest();
+                
             }
+            var entity = UserDatabase.PostUser(_mySqlDatabase, postedUser);
+            if (entity.Result == null)
+            {
+                return Conflict();
+            }
+            return CreatedAtAction(nameof(GetUsers), entity.Result);
         }
     }
 }

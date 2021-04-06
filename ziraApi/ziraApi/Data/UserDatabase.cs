@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ziraApi.Interfaces;
 using ziraApi.Models;
@@ -11,35 +9,47 @@ namespace ziraApi.Data
     {
         public static async Task<User> GetUserByEmail(MySqlDatabase database, string email)
         {
-            List<User> users = new List<User>();
             var cmd = database.Connection.CreateCommand();
-            cmd.CommandText = $"SELECT * FROM users WHERE Email=@email";
+            cmd.CommandText = $"SELECT * FROM zira.users " +
+            "INNER JOIN zira.issues ON zira.users.idusers = zira.issues.idusers " +
+            "Where Email=@email; ";
+
             cmd.Parameters.AddWithValue("@email", email);
             using (var reader = await cmd.ExecuteReaderAsync())
             {
-                if (await reader.ReadAsync())
+                var user = new User();
+                user.Issues = new List<Issue>();
+                while (await reader.ReadAsync())
                 {
-                    var user = new User()
+                    if(user.Id == 0)
                     {
-                        Id = reader.GetFieldValue<int>(0),
-                        Name = reader.GetFieldValue<string>(1),
-                        Email = reader.GetFieldValue<string>(2)
-                    };
-
-                    return user;
+                        user.Id = reader.GetFieldValue<int>(0);
+                        user.FirstName = reader.GetFieldValue<string>(1);
+                        user.Surname = reader.GetFieldValue<string>(2);
+                        user.Email = reader.GetFieldValue<string>(3);
+                    }
+                    user.Issues.Add(new Issue()
+                    {
+                        Id = reader.GetFieldValue<int>(4),
+                        Title = reader.GetFieldValue<string>(5),
+                        Description = reader.GetFieldValue<string>(6),
+                        Type = reader.GetFieldValue<string>(7),
+                        StoryPoints = reader.GetFieldValue<int>(8),
+                     });  
                 }
-                return null;
+                return user.Id == 0 ? null :  user;
             }
         }
 
-        public static async Task<IUser> PostUser(MySqlDatabase database, PostUser postedUser)
+        public static async Task<IUser> PostUser(MySqlDatabase database, IUser postedUser)
         {
             var user = await GetUserByEmail(database, postedUser.Email);
             if(user == null)
             {
                 var cmd = database.Connection.CreateCommand();
-                cmd.CommandText = "INSERT INTO users (Name, Email) VALUES(@name,@email)";
-                cmd.Parameters.AddWithValue("@name", postedUser.Name);
+                cmd.CommandText = "INSERT INTO users (FirstName, Surname, Email) VALUES(@firstName, @Surname,@email)";
+                cmd.Parameters.AddWithValue("@firstName", postedUser.FirstName);
+                cmd.Parameters.AddWithValue("@Surname", postedUser.Surname);
                 cmd.Parameters.AddWithValue("@email", postedUser.Email);
                 cmd.ExecuteNonQuery();
                 return postedUser;
