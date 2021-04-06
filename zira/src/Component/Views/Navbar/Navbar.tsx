@@ -11,6 +11,7 @@ import { View } from '../../../State/Models/ViewsModels';
 import BaseModal from '../../Modals/BaseModal/BaseModal';
 import CreateItemModalContent from '../../Modals/CreateItemModal/CreateItemModalContent';
 import CreateItemModal from '../../Modals/CreateItemModal/CreateItemModal';
+import { MdCreate } from 'react-icons/md';
 
 export default function Navbar({ auth }: NavbarProps): JSX.Element {
     const teamsState = useSelector((state: RootStore) => state.teams);
@@ -27,7 +28,7 @@ export default function Navbar({ auth }: NavbarProps): JSX.Element {
         dispatch(GetTeams());
     }
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
             <NavLink className="navbar-brand" to="/profile">
                 Navbar
             </NavLink>
@@ -49,7 +50,7 @@ export default function Navbar({ auth }: NavbarProps): JSX.Element {
                             <a
                                 className="nav-link dropdown-toggle"
                                 href="#"
-                                id="navbarDropdownMenuLink"
+                                id="navbarDropdownMenuLink nav-link-override"
                                 data-toggle="dropdown"
                                 aria-haspopup="true"
                                 aria-expanded="false"
@@ -74,11 +75,12 @@ export default function Navbar({ auth }: NavbarProps): JSX.Element {
                             data-toggle="modal"
                             data-target="#createItemModal"
                         >
-                            Create
+                            Create <MdCreate />
                         </button>
                     </li>
                     <li className="nav-item">
                         <NavLink
+                            id="nav-link-override"
                             className="nav-link"
                             to="#"
                             onClick={() => auth.logout({ returnTo: window.location.origin })}

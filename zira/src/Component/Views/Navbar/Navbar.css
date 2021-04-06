@@ -2,3 +2,7 @@ nav-collapse {
     justify-content: space-between;
     justify-items: start;
 }
+
+#nav-link-override {
+    padding: 0.45rem 1rem;
+}
