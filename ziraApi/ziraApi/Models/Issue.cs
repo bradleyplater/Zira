@@ -1,8 +1,6 @@
-﻿using ziraApi.Models;
-
-namespace ziraApi.Interfaces
+﻿namespace ziraApi.Models
 {
-    public interface IIssue
+    public class Issue
     {
         public int Id { get; set; }
         public string Title { get; set; }

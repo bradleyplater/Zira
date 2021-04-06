@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ziraApi.Data;
 using ziraApi.Interfaces;
+using ziraApi.Models;
 
 namespace ziraApi.Controllers
 {
@@ -26,7 +27,7 @@ namespace ziraApi.Controllers
 
         [HttpPost]
         [Route("")]
-        public ActionResult CreateIssue(IIssue postedIssue)
+        public ActionResult CreateIssue(Issue postedIssue)
         {
             if (!ModelState.IsValid)
             {

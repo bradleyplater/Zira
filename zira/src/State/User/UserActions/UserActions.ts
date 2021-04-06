@@ -36,7 +36,8 @@ export const CreateUser = (formData: any, email: string) => async (
     axios
         .post('https://localhost:44353/api/v1/users', {
             Email: email,
-            Name: formData.firstName + ' ' + formData.surname,
+            FirstName: formData.firstName,
+            Surname: formData.surname,
         })
         .then((response) => {
             if (response.status === 201) {
