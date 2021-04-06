@@ -28,7 +28,8 @@ export default function Profile({ auth }: ProfileProps): JSX.Element {
         <div>
             {userState.user && (
                 <div>
-                    <p>Name - {userState.user.name}</p>
+                    <p>First Name - {userState.user.firstName}</p>
+                    <p>Surname - {userState.user.surname}</p>
                     <p>Email - {userState.user.email}</p>
                 </div>
             )}
