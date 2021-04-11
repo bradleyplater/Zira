@@ -11,7 +11,7 @@ namespace ziraApi.Data
         {
             var cmd = database.Connection.CreateCommand();
             cmd.CommandText = $"SELECT * FROM zira.users " +
-            "INNER JOIN zira.issues ON zira.users.idusers = zira.issues.idusers " +
+            "LEFT OUTER JOIN zira.issues ON zira.users.idusers = zira.issues.idusers " +
             "Where Email=@email; ";
 
             cmd.Parameters.AddWithValue("@email", email);
@@ -28,14 +28,22 @@ namespace ziraApi.Data
                         user.Surname = reader.GetFieldValue<string>(2);
                         user.Email = reader.GetFieldValue<string>(3);
                     }
-                    user.Issues.Add(new Issue()
+                    try
                     {
-                        Id = reader.GetFieldValue<int>(4),
-                        Title = reader.GetFieldValue<string>(5),
-                        Description = reader.GetFieldValue<string>(6),
-                        Type = reader.GetFieldValue<string>(7),
-                        StoryPoints = reader.GetFieldValue<int>(8),
-                     });  
+                        user.Issues.Add(new Issue()
+                        {
+                            Id = reader.GetFieldValue<int>(4),
+                            Title = reader.GetFieldValue<string>(5),
+                            Description = reader.GetFieldValue<string>(6),
+                            Type = reader.GetFieldValue<string>(7),
+                            StoryPoints = reader.GetFieldValue<int>(8),
+                        });
+                    }
+                    catch
+                    {
+                        break;
+                    }
+                     
                 }
                 return user.Id == 0 ? null :  user;
             }
