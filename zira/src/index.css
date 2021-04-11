@@ -47,3 +47,27 @@ TEXT MODIFIERS
 .text--sm {
     font-size: 0.75rem;
 }
+
+/*
+BACKGROUND MODIFIERS
+*/
+.bg--purple {
+    background-color: rgb(117, 52, 159);
+}
+
+.bg--grey {
+    background: #8c8c8c;
+}
+
+.w-30 {
+    width: 30%;
+}
+
+/*
+LABEL MODIFIERS
+*/
+
+label {
+    font-family: 'Amaranth', sans-serif;
+    font-weight: lighter;
+}
