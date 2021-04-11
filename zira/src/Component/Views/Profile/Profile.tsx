@@ -6,6 +6,7 @@ import { View } from '../../../State/Models/ViewsModels';
 import { RootStore } from '../../../State/Store';
 import { GetUserByEmail } from '../../../State/User/UserActions/UserActions';
 import { SetCurrentView } from '../../../State/Views/ViewsActions/ViewsActions';
+import PersonalDetailsForm from '../../Forms/PersonalDetailsForm/PersonalDetailsForm';
 import './Profile.css';
 
 export default function Profile({ auth }: ProfileProps): JSX.Element {
@@ -33,7 +34,7 @@ export default function Profile({ auth }: ProfileProps): JSX.Element {
 
     switch (buttonSelected) {
         case 'personal details':
-            contentToRender = <div className="col-md-8">Content Personal Details</div>;
+            contentToRender = <PersonalDetailsForm></PersonalDetailsForm>;
             break;
         case 'issues':
             contentToRender = <div className="col-md-8">Content Issues</div>;
@@ -45,7 +46,7 @@ export default function Profile({ auth }: ProfileProps): JSX.Element {
             {userState.user && (
                 <div className="row h-100">
                     <div className="col-md-4 sidebar d-flex align-items-end flex-column justify-content-center">
-                        <div className="d-flex flex-column  justify-content-around h-50">
+                        <div className="d-flex flex-column  justify-content-around h-50 ">
                             <div className="text-left">
                                 <h1 className="text--white header--lg">Profile</h1>
                                 <img src={auth.user.picture} className="rounded-circle"></img>
@@ -75,7 +76,7 @@ export default function Profile({ auth }: ProfileProps): JSX.Element {
                             </button>
                         </div>
                     </div>
-                    {contentToRender}
+                    <div className="col-md-8">{contentToRender}</div>
                 </div>
             )}
         </div>

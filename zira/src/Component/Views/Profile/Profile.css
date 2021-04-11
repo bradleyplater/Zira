@@ -13,6 +13,7 @@
     border: hidden;
     outline: 0;
     color: white;
+    border-bottom: 1px solid grey;
 }
 .sidebar__button:hover {
     cursor: pointer;
