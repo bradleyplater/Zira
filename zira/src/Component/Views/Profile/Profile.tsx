@@ -46,20 +46,32 @@ export default function Profile({ auth }: ProfileProps): JSX.Element {
                 <div className="row h-100">
                     <div className="col-md-4 sidebar d-flex align-items-end flex-column justify-content-center">
                         <div className="d-flex flex-column  justify-content-around h-50">
-                            <h1 className="text--white">PROFILE</h1>
+                            <div className="text-left">
+                                <h1 className="text--white header--lg">Profile</h1>
+                                <img src={auth.user.picture} className="rounded-circle"></img>
+                                <button className="btn btn-lg btn-outline-light profile__button">Edit Profile</button>
+                            </div>
                             <button
                                 className={
-                                    buttonSelected == 'personal details' ? 'sidebar__button--active' : 'sidebar__button'
+                                    buttonSelected == 'personal details'
+                                        ? 'sidebar__button--active text-left'
+                                        : 'sidebar__button text-left'
                                 }
                                 onClick={() => handleSidebarButtonClick('personal details')}
                             >
-                                Personal Details
+                                <h4 className="header--md">Personal Details</h4>
+                                <span className="text--sm text--grey">Your personal details: Email etc.</span>
                             </button>
                             <button
-                                className={buttonSelected == 'issues' ? 'sidebar__button--active' : 'sidebar__button'}
+                                className={
+                                    buttonSelected == 'issues'
+                                        ? 'sidebar__button--active text-left'
+                                        : 'sidebar__button text-left'
+                                }
                                 onClick={() => handleSidebarButtonClick('issues')}
                             >
-                                Issue
+                                <h4 className="header--md">Issues</h4>
+                                <span className="text--sm text--grey">Issues which are assigned/created by you</span>
                             </button>
                         </div>
                     </div>

@@ -10,6 +10,40 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Amaranth', sans-serif;
+}
+
+/*
+HEADER MODIFIERS
+*/
+.header--lg {
+    font-size: 3.5rem;
+}
+
+.header--md {
+    font-size: 1.25rem;
+}
+
+.header--sm {
+    font-size: 0.75rem;
+}
+
+/*
+TEXT MODIFIERS
+*/
+
 .text--white {
     color: white;
+}
+.text--grey {
+    color: #8c8c8c;
+}
+
+.text--sm {
+    font-size: 0.75rem;
 }

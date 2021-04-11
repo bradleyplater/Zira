@@ -12,6 +12,10 @@
     border-radius: 25px 25px 25px 0;
     border: hidden;
     outline: 0;
+    color: white;
+}
+.sidebar__button:hover {
+    cursor: pointer;
 }
 
 .sidebar__button:focus {
@@ -50,8 +54,20 @@
     background-color: white;
     border-radius: 25px 0px 0px 25px;
     border: hidden;
+    padding: 5%;
 }
 
 .sidebar__button--active:focus {
     outline: 0px;
+}
+.sidebar__button--active:hover {
+    cursor: pointer;
+}
+
+.button__span {
+    font-size: 0.75rem;
+}
+
+.profile__button {
+    margin-left: 15%;
 }
