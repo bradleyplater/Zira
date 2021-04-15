@@ -21,7 +21,7 @@ function App(): JSX.Element {
     };
 
     return (
-        <div className="App">
+        <div className="App h-100">
             <Router>
                 <Navbar auth={auth} />
                 <Switch>

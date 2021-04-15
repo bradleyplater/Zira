@@ -1,0 +1,74 @@
+.sidebar {
+    background: rgb(117, 52, 159);
+    background: linear-gradient(0deg, rgba(117, 52, 159, 1) 0%, rgba(36, 0, 64, 1) 100%);
+    padding: 0;
+}
+
+.sidebar__button {
+    position: relative; /* Add position relative so the pseudo element will origin off this with position absolute */
+    height: 100px;
+    width: 325px;
+    background-color: transparent;
+    border-radius: 25px 25px 25px 0;
+    border: hidden;
+    outline: 0;
+    color: white;
+    border-bottom: 1px solid grey;
+}
+.sidebar__button:hover {
+    cursor: pointer;
+}
+
+.sidebar__button:focus {
+    outline: 0;
+}
+
+.sidebar__button--active::before {
+    content: '';
+    position: absolute;
+
+    height: 50px;
+    width: 25px;
+    bottom: -50px;
+    right: 0%;
+    background-color: transparent;
+    border-top-right-radius: 25px;
+    box-shadow: 0 -25px 0 0 white;
+}
+
+.sidebar__button--active::after {
+    content: '';
+    position: absolute;
+    height: 50px;
+    width: 25px;
+    top: -50px;
+    right: 0%;
+    background-color: transparent;
+    border-bottom-right-radius: 25px;
+    box-shadow: 0 25px 0 0 white;
+}
+
+.sidebar__button--active {
+    position: relative; /* Add position relative so the pseudo element will origin off this with position absolute */
+    height: 100px;
+    width: 325px;
+    background-color: white;
+    border-radius: 25px 0px 0px 25px;
+    border: hidden;
+    padding: 5%;
+}
+
+.sidebar__button--active:focus {
+    outline: 0px;
+}
+.sidebar__button--active:hover {
+    cursor: pointer;
+}
+
+.button__span {
+    font-size: 0.75rem;
+}
+
+.profile__button {
+    margin-left: 15%;
+}

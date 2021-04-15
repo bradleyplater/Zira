@@ -1,13 +1,73 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+        'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Amaranth', sans-serif;
+}
+
+/*
+HEADER MODIFIERS
+*/
+.header--lg {
+    font-size: 3.5rem;
+}
+
+.header--md {
+    font-size: 1.25rem;
+}
+
+.header--sm {
+    font-size: 0.75rem;
+}
+
+/*
+TEXT MODIFIERS
+*/
+
+.text--white {
+    color: white;
+}
+.text--grey {
+    color: #8c8c8c;
+}
+
+.text--sm {
+    font-size: 0.75rem;
+}
+
+/*
+BACKGROUND MODIFIERS
+*/
+.bg--purple {
+    background-color: rgb(117, 52, 159);
+}
+
+.bg--grey {
+    background: #8c8c8c;
+}
+
+.w-30 {
+    width: 30%;
+}
+
+/*
+LABEL MODIFIERS
+*/
+
+label {
+    font-family: 'Amaranth', sans-serif;
+    font-weight: lighter;
 }
