@@ -43,7 +43,7 @@ namespace ziraApi.Data
                     {
                         break;
                     }
-                     
+                      
                 }
                 return user.Id == 0 ? null :  user;
             }

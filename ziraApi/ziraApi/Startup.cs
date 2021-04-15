@@ -29,7 +29,7 @@ namespace ziraApi
         {
             services.AddCors();
 
-            services.AddTransient<MySqlDatabase>(_ => new MySqlDatabase("Server=127.0.0.1; Port=3306; Database=Zira; uid=Admin; password=sE*,56pUT~WWQ7Fx"));
+            services.AddTransient<MySqlDatabase>(_ => new MySqlDatabase($"Server=127.0.0.1; Port=3306; Database=Zira; uid=Admin; password={Configuration["DatabaseSecrets:Password"]}"));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
