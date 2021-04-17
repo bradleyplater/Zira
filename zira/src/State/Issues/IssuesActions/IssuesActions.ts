@@ -1,12 +1,14 @@
 import { IssueDispatchTypes, ISSUE_CREATED, ISSUE_STARTED_API_CALL } from './IssueActionTypes';
 import { Dispatch } from 'redux';
 import axios from 'axios';
-import { IssueForm, TransformedIssueForm } from '../../Models/IssuesModels';
+import { TransformedIssueForm } from '../../Models/IssuesModels';
 import { User } from '../../Models/UserModels';
 import DomHelper from '../../../Helpers/DomHelper';
-export const CreateIssue = (issueData: TransformedIssueForm, user: User | undefined, addToast: any) => async (
+import { AddToast } from 'react-toast-notifications';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const CreateIssue = (issueData: TransformedIssueForm, user: User | undefined, addToast: AddToast) => async (
     dispatch: Dispatch<IssueDispatchTypes>,
-) => {
+): Promise<void> => {
     dispatch({ type: ISSUE_STARTED_API_CALL });
     axios
         .post(

@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
 import './Navbar.css';
 import { GetTeams } from '../../../State/Teams/Actions/TeamsActions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,7 +7,6 @@ import { Team } from '../../../State/Models/TeamsModels';
 import { NavbarProps } from '../../../Models/PropTypes';
 import { RootStore } from '../../../State/Store';
 import { View } from '../../../State/Models/ViewsModels';
-import BaseModal from '../../Modals/BaseModal/BaseModal';
 import CreateItemModalContent from '../../Modals/CreateItemModal/CreateItemModalContent';
 import CreateItemModal from '../../Modals/CreateItemModal/CreateItemModal';
 import { MdCreate } from 'react-icons/md';
@@ -16,7 +14,6 @@ import { MdCreate } from 'react-icons/md';
 export default function Navbar({ auth }: NavbarProps): JSX.Element {
     const teamsState = useSelector((state: RootStore) => state.teams);
     const viewsState = useSelector((state: RootStore) => state.views);
-    const issuesState = useSelector((state: RootStore) => state.issues);
 
     const dispatch = useDispatch();
 

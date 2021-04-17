@@ -9,6 +9,11 @@ export type User = {
     issues: IIssue[];
 };
 
+export type CreateUserFormData = {
+    firstName: string;
+    surname: string;
+};
+
 export interface IUserState {
     loading: boolean;
     user?: User;

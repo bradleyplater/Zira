@@ -7,7 +7,7 @@ import { SetCurrentView } from '../../../State/Views/ViewsActions/ViewsActions';
 import CreateProfileForm from '../../Forms/CreateProfileForm/CreateProfileForm';
 import './CreateProfile.css';
 
-export default function CreateProfile() {
+export default function CreateProfile(): JSX.Element {
     const { isAuthenticated, user } = useAuth0();
 
     const viewsState = useSelector((state: RootStore) => state.views);
