@@ -21,7 +21,7 @@ export default function CreateItemModalContent(): JSX.Element {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function handleOnChange(event: any): void {
-        setItemToCreate(event.target.value);
+        setItemToCreate(event.value);
     }
 
     const onSubmit = (data: IssueForm): void => {
