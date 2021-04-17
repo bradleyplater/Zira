@@ -1,6 +1,7 @@
 /*DEV DEPENDENCIES */
 import axios from 'axios';
 import { Dispatch } from 'redux';
+import { CreateUserFormData } from '../../Models/UserModels';
 import {
     API_CALL_STARTED,
     UserDispatchTypes,
@@ -29,9 +30,9 @@ export const GetUserByEmail = (email: string) => async (dispatch: Dispatch<UserD
         });
 };
 
-export const CreateUser = (formData: any, email: string) => async (
+export const CreateUser = (formData: CreateUserFormData, email: string) => async (
     dispatch: Dispatch<UserDispatchTypes>,
-): Promise<any> => {
+): Promise<void> => {
     dispatch({ type: API_CALL_STARTED });
 
     axios

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootStore } from '../../../State/Store';
 import './PersonalDetailsForm.css';
 
-export default function PersonalDetailsForm() {
+export default function PersonalDetailsForm(): JSX.Element {
     const userState = useSelector((state: RootStore) => state.user);
 
     const user = userState.user;

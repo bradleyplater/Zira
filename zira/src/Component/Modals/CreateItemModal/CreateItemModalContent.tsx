@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import { useToasts } from 'react-toast-notifications';
 import EnumHelper from '../../../Helpers/EnumHelper';
-import { IssueTypes } from '../../../Models/IssueTypes';
 import { CreateIssue } from '../../../State/Issues/IssuesActions/IssuesActions';
 import { IssueForm, TransformedIssueForm } from '../../../State/Models/IssuesModels';
 import { RootStore } from '../../../State/Store';
@@ -20,11 +19,12 @@ export default function CreateItemModalContent(): JSX.Element {
 
     const itemToCreateSelectOptions = [{ value: 'issue', label: 'Issue' }];
 
-    function handleOnChange(event: any) {
-        setItemToCreate(event.value);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    function handleOnChange(event: any): void {
+        setItemToCreate(event.target.value);
     }
 
-    const onSubmit = (data: IssueForm): any => {
+    const onSubmit = (data: IssueForm): void => {
         const issueType = EnumHelper.convertStringToIssueTypesEnum(data.issueType.value);
 
         const transformedData: TransformedIssueForm = {
@@ -40,6 +40,7 @@ export default function CreateItemModalContent(): JSX.Element {
         }
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let formToRender: any;
     switch (itemToCreate) {
         case 'issue':

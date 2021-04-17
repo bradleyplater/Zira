@@ -6,7 +6,7 @@ import { RootStore } from '../../../State/Store';
 import { SetCurrentView } from '../../../State/Views/ViewsActions/ViewsActions';
 import './LandingPage.css';
 
-export default function LandingPage({ loginWithRedirect }: LandingPageProps) {
+export default function LandingPage({ loginWithRedirect }: LandingPageProps): JSX.Element {
     const viewsState = useSelector((state: RootStore) => state.views);
     const dispatch = useDispatch();
 

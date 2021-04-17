@@ -7,15 +7,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CreateUser } from '../../../State/User/UserActions/UserActions';
 import { useHistory } from 'react-router-dom';
 import { CreateProfileFormProps } from '../../../Models/PropTypes';
+import { CreateUserFormData } from '../../../State/Models/UserModels';
 
-export default function CreateProfileForm({ isAuthenticated, user }: CreateProfileFormProps) {
+export default function CreateProfileForm({ isAuthenticated, user }: CreateProfileFormProps): JSX.Element {
     const userState = useSelector((state: RootStore) => state.user);
 
     const { register, handleSubmit, errors } = useForm();
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const onSubmit = (data: any): any => {
+    const onSubmit = (data: CreateUserFormData): void => {
         dispatch(CreateUser(data, user.email));
     };
 

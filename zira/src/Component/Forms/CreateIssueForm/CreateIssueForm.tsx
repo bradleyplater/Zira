@@ -3,7 +3,7 @@ import { Controller } from 'react-hook-form';
 import Loader from 'react-loader-spinner';
 import { useSelector } from 'react-redux';
 import Select from 'react-select';
-import { IssueTypes } from '../../../Models/IssueTypes';
+import { IssueType, IssueTypes } from '../../../Models/IssueTypes';
 import { CreateIssueFormProps } from '../../../Models/PropTypes';
 import { RootStore } from '../../../State/Store';
 import './BaseForm.css';
@@ -11,7 +11,7 @@ import './BaseForm.css';
 export default function CreateIssueForm({ register, errors, control }: CreateIssueFormProps): JSX.Element {
     const issuesState = useSelector((state: RootStore) => state.issues);
 
-    const options: any[] = [];
+    const options: IssueType[] = [];
 
     Object.keys(IssueTypes).map((key) => {
         options.push({ value: key, label: key });
