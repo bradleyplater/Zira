@@ -7,7 +7,7 @@ namespace Zira.Core.Models
 {
     public abstract class Document : IDocument
     {
-        public ObjectId ObjectId { get; set; }
-        public DateTime CreatedAt => ObjectId.CreationTime;
+        public ObjectId Id { get; set; }
+        public DateTime CreatedAt => Id.CreationTime;
     }
 }

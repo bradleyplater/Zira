@@ -4,9 +4,9 @@ using Zira.Core.Attributes;
 namespace Zira.Core.Models
 {
     [BsonCollection("Users")]
-    class User : UserDocument
+    public class User : UserDocument
     {
-        public int Id { get; set; }
+        public int UserId { get; set; }
         public string FirstName { get; set; }
         public string Surname { get; set; }
     }

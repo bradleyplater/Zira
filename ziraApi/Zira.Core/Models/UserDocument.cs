@@ -7,10 +7,10 @@ namespace Zira.Core.Models
 {
     public abstract class UserDocument : IUserDocument 
     {
-        public ObjectId ObjectId { get; set; }
+        public ObjectId Id { get; set; }
 
         public string Email { get; set; }
 
-        public DateTime CreatedAt => ObjectId.CreationTime;
+        public DateTime CreatedAt => Id.CreationTime;
     }
 }

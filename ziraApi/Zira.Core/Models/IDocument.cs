@@ -10,7 +10,7 @@ namespace Zira.Core.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.String)]
-        ObjectId ObjectId { get; set; }
+        ObjectId Id { get; set; }
 
         DateTime CreatedAt { get; }
     }
