@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Zira.Core.Interfaces
+﻿namespace Zira.Core.Models
 {
     public interface IBaseUser
     {
