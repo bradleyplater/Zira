@@ -6,8 +6,8 @@ using Zira.Core.Models;
 
 namespace Zira.Core.Repositories
 {
-    public interface IUserRepository : IRepository<IBaseUser>
+    public interface IUserRepository<TDocument> where TDocument : IUserDocument
     {
-        Task<IBaseUser> GetWithEmailAsync();
+        Task<TDocument> GetWithEmailAsync(string email);
     }
 }
