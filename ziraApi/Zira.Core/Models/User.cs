@@ -1,11 +1,13 @@
-﻿namespace Zira.Core.Models
+﻿using MongoDB.Bson;
+using Zira.Core.Attributes;
+
+namespace Zira.Core.Models
 {
-    class User : IBaseUser
+    [BsonCollection("Users")]
+    class User : UserDocument
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string Surname { get; set; }
-        public string Email { get; set; }
-
     }
 }
