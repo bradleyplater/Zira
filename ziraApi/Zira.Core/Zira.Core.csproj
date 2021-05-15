@@ -9,5 +9,9 @@
     <PackageReference Include="MongoDB.Driver" Version="2.12.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Zira.Data\Zira.Data.csproj" />
+  </ItemGroup>
+
 
 </Project>
