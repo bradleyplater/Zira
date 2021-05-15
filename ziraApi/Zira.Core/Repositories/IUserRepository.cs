@@ -8,6 +8,6 @@ namespace Zira.Core.Repositories
 {
     public interface IUserRepository<TDocument> where TDocument : IUserDocument
     {
-        Task<TDocument> GetWithEmailAsync(string email);
+        Task<TDocument> FindByEmailAsync(string email);
     }
 }

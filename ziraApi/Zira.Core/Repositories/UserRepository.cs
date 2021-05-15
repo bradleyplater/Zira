@@ -28,7 +28,7 @@ namespace Zira.Core.Repositories
                 .FirstOrDefault())?.CollectionName;
         }
 
-        public virtual Task<TDocument> GetWithEmailAsync(string email)
+        public virtual Task<TDocument> FindByEmailAsync(string email)
         {
             return Task.Run(() =>
             {

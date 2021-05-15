@@ -18,7 +18,7 @@ namespace Zira.Services.Services
 
         public async Task<User> GetUserByEmailAsync(string email)
         {
-            return await _userRepository.GetWithEmailAsync(email);
+            return await _userRepository.FindByEmailAsync(email);
         }
     }
 }
