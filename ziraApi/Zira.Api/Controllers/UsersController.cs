@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -14,20 +15,21 @@ namespace Zira.Api.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
-
-        public UsersController(IUserService userService)
+        private readonly IMapper _mapper;
+        public UsersController(IUserService userService, IMapper mapper)
         {
             _userService = userService;
+            _mapper = mapper;
         }
 
         [HttpGet]
         [Route("")]
-        public async Task<ActionResult<User>> GetUserByEmail(string email)
+        public async Task<ActionResult<UserDto>> GetUserByEmail(string email)
         {
-            var user = _userService.GetUserByEmailAsync(email);
+            var user = _userService.GetUserByEmailAsync(email.ToLower());
             if(user.Result != null)
             {
-                return Ok(await user);
+                return Ok( _mapper.Map<UserDto>(await user));
             } else
             {
                 return NotFound();
