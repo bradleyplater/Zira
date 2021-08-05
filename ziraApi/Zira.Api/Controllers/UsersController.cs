@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -24,16 +23,31 @@ namespace Zira.Api.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<ActionResult<UserDto>> GetUserByEmail(string email)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<UserDto>> GetUserByEmail([FromQuery] string email)
         {
             var user = _userService.GetUserByEmailAsync(email.ToLower());
             if(user.Result != null)
             {
-                return Ok( _mapper.Map<UserDto>(await user));
+                return Ok( _mapper.MapUserToUserDto(await user));
             } else
             {
                 return NotFound();
             }
+        }
+
+        [HttpPost]
+        [Route("")]
+        public ActionResult PostUser(User postedUser)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var entity = _userService.CreateUser(postedUser);
+
+            return CreatedAtAction(nameof(GetUserByEmail), entity.Result);
         }
     }
 }

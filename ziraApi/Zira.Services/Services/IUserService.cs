@@ -6,5 +6,6 @@ namespace Zira.Services.Services
     public interface IUserService
     {
         Task<User> GetUserByEmailAsync(string email);
+        Task<User> CreateUser(User user);
     }
 }

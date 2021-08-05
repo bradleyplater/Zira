@@ -9,6 +9,7 @@ namespace Zira.Core.Models
     {
         public ObjectId Id { get; set; }
 
+        public string ReadableId { get; set; }
         public string Email { get; set; }
 
         public DateTime CreatedAt => Id.CreationTime;

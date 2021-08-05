@@ -12,7 +12,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Zira.Core.Models;
 using Zira.Core.Repositories;
+using Zira.Core.Repositories.Issues;
 using Zira.Data;
 using Zira.Services.Services;
 
@@ -35,10 +37,18 @@ namespace Zira.Api
 
             services.AddSingleton<IMongoDbSettings>(serviceProvider => serviceProvider.GetRequiredService<IOptions<MongoDbSettings>>().Value);
 
-            services.AddScoped(typeof(IUserRepository<>), typeof(UserRepository<>));
-            services.AddScoped(typeof(IUserService), typeof(UserService));
+            services.AddScoped<IMapper, Mapper>();
 
-            services.AddAutoMapper(typeof(Startup));
+            //Add Repositories
+            services.AddScoped(typeof(IUserRepository<>), typeof(UserRepository<>));
+            services.AddScoped(typeof(IIssuesRepository<>), typeof(IssuesRepository<>));
+
+            //Add Services
+            services.AddScoped(typeof(IUserService), typeof(UserService));
+            services.AddScoped(typeof(IIssuesService), typeof(IssuesService));
+
+
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

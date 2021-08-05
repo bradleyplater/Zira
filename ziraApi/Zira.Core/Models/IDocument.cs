@@ -12,6 +12,8 @@ namespace Zira.Core.Models
         [BsonRepresentation(BsonType.String)]
         ObjectId Id { get; set; }
 
+        string ReadableId { get; set; }
+
         DateTime CreatedAt { get; }
     }
 }

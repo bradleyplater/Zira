@@ -6,7 +6,11 @@ namespace Zira.Core.Models
     [BsonCollection("Users")]
     public class User : UserDocument
     {
-        public int UserId { get; set; }
+        public User()
+        {
+            Id = new ObjectId();
+        }
+
         public string FirstName { get; set; }
         public string Surname { get; set; }
     }
